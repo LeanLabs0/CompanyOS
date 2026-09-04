@@ -1,17 +1,12 @@
-# companies/
+# Brands
 
-One folder per brand this OS works with. Each holds the four brand-context files the company path of /onboard fills:
+One folder per company or client. Quick setup needs only `facts.md` and `flavor.md`; add audience research (`forces.md`) and positioning (`frame.md`) when needed.
 
-```
-companies/<slug>/
-├── facts.md      products, market, competitors, solutions, results
-├── forces.md     ideal customer profiles (pains, triggers, fears, qualifications)
-├── frame.md      value proposition, villain, method, proof
-└── flavor.md     voice archetype, never-words, always-words, samples
-```
+- `facts.md` holds identity, offers, audience, sourced claims, and explicit unknowns.
+- `flavor.md` holds writing samples and voice evidence, plus links to approved rules in `rules/`. It does not duplicate those rules.
+- Facts have a source URL/date or human confirmation/date. Distinguish provisional website claims from confirmed facts.
+- Before customer-facing work, read that brand's facts and flavor, then applicable approved rules. Missing information calls for a labeled draft or a focused question.
+- `companies/.pinned` optionally contains the default brand slug. It is a fallback when no brand is specified, not permission to mix clients. Switching the default does not rewrite other brands.
+- `company.json` summarizes the default brand only. Profiles are authoritative.
 
-Rules:
-- Every answer carries provenance: "(confirmed by <name>, YYYY-MM-DD; drafted from <url> | human-supplied)".
-- Before producing anything customer-facing for a company, read its facts.md and flavor.md first.
-- Numbers without a named source do not go in these files. Ever.
-- The question bank behind these files lives in references/brand-questions/.
+Optional question banks live in `references/brand-questions/`; the workflow is in `references/brand-workshop.md`.

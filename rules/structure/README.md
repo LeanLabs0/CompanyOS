@@ -1,8 +1,3 @@
 # Structure
 
-How a piece is built: answer first, question-based headers, tables for comparisons, Big 5 / They Ask You Answer.
-
-**Pages to add later (one at a time):**
-
-- `answer-first.md`
-- `big-5.md`
+Approved instructions for organizing a piece. Name the brand and applicable output types. Follow [the rules guide](../READ-THIS-FIRST.md); do not impose one article or email format on every task.

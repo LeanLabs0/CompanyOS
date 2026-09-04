@@ -4,13 +4,9 @@
   "domain": "acme.co",
   "short_name": "Acme",
   "founder_or_voice": "Alex",
-  "repo_url": "https://github.com/LeanLabs0/CompanyOS",
+  "repo_url": "",
   "industry": "B2B SaaS",
   "one_liner": "Acme helps mid-market teams ship faster.",
-  "voice_notes": [
-    "Direct, practical, no jargon",
-    "Prefer short sentences"
-  ],
   "products": [
     {
       "name": "Acme Platform",

@@ -1,19 +1,21 @@
 # Wiki index
 
-The retrieval layer. One line per page, updated on every ingest/synthesis/lint. Read this first when answering any question about wiki content.
+Read this index before answering questions about saved knowledge. Open the relevant pages; the index is not their full content.
 
 ## Sources
 
-- [LLM Wiki (idea file)](sources/llm-wiki-idea.md) - the founding pattern doc: LLM-maintained persistent wiki vs per-query RAG.
+No client sources ingested yet.
 
 ## Entities
 
-- [Memex](entities/memex.md) - Vannevar Bush's 1945 associative knowledge store, precursor to the LLM Wiki pattern.
+None yet.
 
 ## Concepts
 
-- [LLM Wiki pattern](concepts/llm-wiki-pattern.md) - LLM builds/maintains the wiki, human curates and asks; knowledge compounds.
+None yet.
 
 ## Syntheses
 
-(none yet - filed answers land here)
+None yet.
+
+The kit's historical wiki example is in [references/examples/llm-wiki](../references/examples/llm-wiki/README.md). It is demonstration material, not knowledge about the user or their clients.

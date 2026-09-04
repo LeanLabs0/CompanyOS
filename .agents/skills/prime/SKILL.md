@@ -1,34 +1,25 @@
 ---
 name: prime
-description: Prime a session before starting work. Loads memory, context, the relevant company profile, wiki state, and recent decisions, then reports readiness in one screen. Start every session with this. Use when someone says "prime", "/prime", "get up to speed", or at the start of any work session.
+description: Load saved context when starting work in this second brain, returning in a new conversation, or asking to get up to speed. Verify saved recall when requested.
 ---
 
-# Prime this session
+# Load the brain
 
-Load the OS deliberately, then prove it. Read in this order, skip nothing:
+Read from the connected folder, not recollections from another chat. Paths below are relative to the kit root.
 
-1. **Freshness.** If this repo has a remote: git pull, note the result. Offline or no remote: say "working from local state" and continue.
-2. **Memory:** memory/MEMORY.md (the index IS the rule layer; anything not indexed is invisible).
-3. **Context:** context/ files (who the user is, priorities).
-4. **Company scope:** if this session is about a company, its companies/<slug>/facts.md and flavor.md, always; forces.md and frame.md too if output is customer-facing.
-5. **Recent state:** last 3 entries of wiki/log.md and the newest decisions/log.md entry.
-6. **Connections:** skim connections.md only if the session will touch external tools.
+1. Read `AGENTS.md` and `context/setup.md` if present. Missing setup state is normal for an older brain. If the folder cannot be read, explain how to reconnect it using `references/app-setup.md`. Do not invent saved context.
+2. Read `memory/MEMORY.md`, then the actual files for global standing preferences and preferences relevant to this task. The index is a set of pointers, not the full rules. Respect each memory's scope.
+3. Read relevant `context/` files, especially current priorities. Load personal voice samples only for personal writing.
+4. Determine the active brand from the user's task. Otherwise read `companies/.pinned` if present. Read that brand's facts and flavor; for writing, load `rules/READ-THIS-FIRST.md` and approved rules matching that brand. Never apply another client's rules merely because they were loaded earlier.
+5. Read the newest relevant entries in `decisions/log.md` and `wiki/log.md`. Use `projects/README.md` to locate work. Read the wiki index when the task needs its knowledge.
+6. Read `connections.md` only if external tools matter. Check access before claiming a connection works. Do not run Git pulls, sync scripts, or background maintenance at session start.
 
-## The readiness report (one screen, then stop and wait for the task)
+Continue with the user's task after loading. Do not stop for readiness approval. If they only asked to get up to speed, summarize the priority, active brand, recent relevant change, and missing context affecting work.
 
-```
-Primed: <local | pulled, up to date | pulled, N new commits>.
-Memory: <count> standing rules loaded; <the 1-2 most relevant to this session>.
-Context: <one line: who + this quarter's priority>.
-Company scope: <slug + one-line positioning + voice markers | none>.
-Recently changed: <1-2 lines from wiki/decisions logs>.
-Watch-outs: <anything stale, frozen, or contradictory that touches this session>.
-```
+## Fresh-conversation recall check
 
-Do not start any task inside this skill. Prime, report, wait.
+When the return prompt requests a recall check, retrieve the saved priority and a confirmed preference (or identity fact if none exists), citing each file. Compare with the setup record, not invented expectations.
 
-## Verification (for the implementer)
+Only mark setup `verified` if this is a fresh conversation relative to initial setup and both items were retrieved from disk. Record the date, app/mode, folder, and file paths in `context/setup.md`. If that session boundary cannot be established, report successful readback and leave fresh-session verification pending. A user-reported pass in another app must be labeled as such.
 
-- Cold test: fresh session, /prime, the report cites the real memory count and the actual newest log entries. Generic output = fail.
-- Scope test: "/prime for <company> work" loads that companies/ folder and says so.
-- No-remote test: repo without a remote still primes and says "local state".
+If files exist but were not discovered automatically, reading `AGENTS.md` explicitly is valid recovery. Save the working return instructions. Claim automatic loading only when observed.

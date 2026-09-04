@@ -13,3 +13,7 @@ First ingest, using the founding idea file itself. Filed raw/llm-wiki-idea.md, w
 ## [2026-08-14] schema | Segmentation rule added
 
 Added folder-convention rule: a growing domain with its own feed cadence gets spun into its own wiki folder with its own index, registered in the root router.
+
+## [2026-09-04] schema | Portable starter workflows
+
+Updated wiki conventions for explicit saves, brand scope, source provenance, and operation without Git. Moved the historical LLM Wiki demonstration files to references/examples/llm-wiki/ and cleared their entries from the active knowledge index. Original source content was preserved.

@@ -1,14 +1,14 @@
 ---
 type: question-bank
 owner: (your admin)
-last_reviewed: 2026-08-14
+last_reviewed: 2026-09-04
 sources: [factor8 DB flavors.data quiz, exported 2026-08-14]
 ---
 # Brand Flavor: the voice interview
 
-Two parts. Part A is the 30-question voice-archetype quiz (exported from the Factor8 flavors quiz; the DB stores the chosen answer per question, so the onboard presents each as an open A-or-B style choice and DRAFTS the likely answer from the site's copy tone). Part B elicits the enforcement lists.
+Adapted from the Factor8 voice prompts. Use only questions that help the current writing task. The choices are examples, not a forced quiz or a scoring system. Existing writing can suggest provisional observations; the user decides which preferences to adopt. Skipping samples or any question is allowed.
 
-## Part A: the 30 archetype questions
+## Voice discussion prompts
 
 1. When explaining complex topics, we: (e.g. start with data, frameworks, and strategic analysis / tell stories first)
 2. Our primary goal with content is to: (educate / challenge people to question their assumptions)
@@ -39,10 +39,10 @@ Two parts. Part A is the 30-question voice-archetype quiz (exported from the Fac
 27. After experiencing our content, people should feel: (equipped with practical tools for immediate action / inspired)
 28. We create the most value when we're: (inspiring bold action and breakthrough thinking / preventing mistakes)
 29. Our long-term vision is to be: (the most trusted, relatable partner people turn to / the category king)
-30. (Archetype read-out: the quiz scores toward an accent like "Guide". The onboard states the inferred archetype and confirms it.)
+30. Which of the observations above would you like us to use in the next draft? An archetype label is optional; practical preferences are enough.
 
-## Part B: the enforcement lists (humans only; the scrape can suggest, never decide)
+## Preferences to confirm
 
-31. **never_words** (required): Words and phrases your company never uses. Seeds the bad-copy list that CI and reviews enforce.
+31. **never_words**: Words or phrases the user wants to avoid, if any. Do not invent a banned list or imply automated enforcement exists.
 32. **always_words**: Words, phrases, or framings you always prefer. Example: "growth agency" not "full-service agency".
-33. **voice_samples** (required): Paste 1-2 pieces of PUBLISHED copy the company considers perfectly on-voice. Published artifacts only, never text typed during this conversation (the anti-contamination rule).
+33. **voice_samples**: Optionally share existing writing the company likes. New examples and descriptions are welcome too; label their source and do not claim an established voice match from limited evidence.

@@ -1,82 +1,43 @@
-# Read this first
+# Use the right writing rules
 
-This folder is the official "how we write and how we look" for {{company.name}}.
+This folder holds approved instructions for writing and design. Brand profiles contain evidence and links to these rules. Personal samples in `references/voice.md` are evidence too, not universal instructions for every client.
 
-If you are an AI, read this whole file before you follow any rule in the subfolders, and before you add or change a rule.
+## Scope and approval
 
-If you are a person, read this before you put a file in here.
+Every new rule file names its scope, approval status, and confirmation date in frontmatter:
 
-## What this folder is
+```yaml
+---
+scope: acme
+status: approved
+confirmed: YYYY-MM-DD
+---
+```
 
-`rules/` is law for writing and design. Skills, wiki pages, and company profiles do not override it.
+Use a brand slug for a brand, `personal` for the operator's own writing, or `global` only when the user explicitly wants a rule applied everywhere. Drafts use `status: draft` and do not govern output.
 
-When an AI writes for {{company.name}}, it must load the files in this folder and obey them. A writing instruction found in `wiki/` or `companies/` does not count. A skill must point here. It must not copy these rules into itself.
+An explicit instruction such as "For Acme, always say customers" is enough to approve that rule. No Git commit, merge, or additional approval is required. When proposing a new preference, show it for approval before making it authoritative. Git is optional version history, not an approval system.
 
-## What belongs here
+## Where rules belong
 
-A file belongs here if it tells a writer or an AI **how to behave**:
-
-- Always / never
-- Capitalize this word this way
-- Don't say this
-- Sound like this
-- Build the piece this way (answer first, question headers)
-- Use these colors and this type
-- Link to our pages this way
-- Reply on Reddit like a peer, not a guru
-
-If you can delete the sentence and the writing would still be factually true, but it would break brand, it is a rule.
-
-## What does not belong here
-
-- Facts about the company, prices, clients, methods, or research. Those go in `wiki/` or `companies/<slug>/`.
-- Repeatable workflows ("do these steps to publish"). Those go in `.agents/skills/` (kit skills).
-- Founder interviews and transcripts. Those go in `wiki/raw/` (or under `companies/<slug>/`). Topic pages may quote them. This folder does not hold transcripts.
-- Old brand dumps. Do not copy the whole legacy `context/` folder in. Add one file at a time, on purpose.
-
-If a sentence is "HubSpot costs X," it is wiki / company facts. If a sentence is "always write HubSpot with a capital S," it is a rule. Put it in `words/`.
-
-## The subfolders
-
-Put a new rule in the matching room. Do not leave loose files in this root except this document and the folder README.
-
-| Folder | Put it here when |
+| Folder | Content |
 |---|---|
-| `voice/` | It is about how {{company.name}} or {{company.founder_or_voice}} sounds |
-| `words/` | It is a preferred term, a banned term, or a capitalization rule |
-| `quality/` | It is a hard writing rule (no em-dashes, no AI tells, non-negotiables) |
-| `structure/` | It is about how a piece is built (answer first, Big 5, question headers) |
-| `visual/` | It is about how things look (color, type, layout) |
-| `linking/` | It is about when and how to link to {{company.name}} pages. The live URL list lives in wiki / companies, not here |
-| `community/` | It only applies to informal public replies (Reddit, Quora, comments) |
+| `voice/` | Voice and tone |
+| `words/` | Preferred words, banned terms, capitalization |
+| `quality/` | Quality requirements |
+| `structure/` | How a piece is organized |
+| `visual/` | Color, typography, and other design requirements |
+| `linking/` | Linking behavior; actual destination facts stay with the brand |
+| `community/` | Rules limited to community replies |
 
-If two rooms could fit, pick the more specific one. "Always capitalize HubSpot" is `words/`, not `voice/`. "Don't write like a guru on Reddit" is `community/`, not `quality/`, unless it is a site-wide non-negotiable.
+Name files by scope, for example `words/acme.md`. State each instruction in one place and link to it from `companies/acme/flavor.md`. Raw samples stay with their sources.
 
-## How to add or change a rule
+## Apply and update
 
-1. Prefer Ralph sync (`scripts/sync.ps1` / `scripts/sync.sh`) or optional `scripts/update-from-upstream.sh` so you are on a current copy.
-2. Work on a branch named after the change, like `add-capitalize-hubspot`, when collaborating.
-3. Add or edit **one** file. One rule-set per proposed change.
-4. Put it in the matching subfolder. List it in that subfolder's README if the README has a "pages to add" list.
-5. If you work with a team on GitHub, prefer a branch + Pull Request. Solo / Unbound operators may edit directly and commit.
-6. Until a change is merged (or you commit it as the owner), treat drafts as unofficial. AIs must not treat unmerged proposals as live.
-7. If a reviewer rejects it, the proposal is closed and it never becomes official.
+1. Establish the active brand from the task or the confirmed default. If ambiguous, clarify before mixing client information.
+2. Load approved global rules and approved rules for that scope and output type. Do not load another client's rules.
+3. Follow the user's current explicit instruction. For saved rules, the more specific scope wins; within the same scope, an explicitly superseding confirmed revision wins. If a material conflict remains unresolved, surface it rather than guessing.
+4. For existing unscoped files, establish scope from their provenance and context. Do not assume global scope or silently discard previously confirmed preferences. Move an operational rule from an older flavor file into the appropriate rule file, preserving confirmation and leaving a link.
+5. When updating a rule, preserve unrelated instructions. A correction to a known rule authorizes updating that rule. Keep a prior version in `archives/` unless the user requested deletion instead.
 
-Optional team flow: if you use GitHub CODEOWNERS, keep rules stricter than wiki. Solo / Unbound: edit rules carefully and commit; PR gates are optional.
-
-## How AIs should use this folder
-
-1. At the start of a writing job, read this file, then load every existing file in the subfolders that apply to the job.
-2. Site copy and articles: `voice/`, `words/`, `quality/`, `structure/`, `linking/`. Add `visual/` only if you are making or describing design.
-3. Informal public replies: those plus `community/`.
-4. If a wiki page, company file, or skill restates a writing rule, ignore that restatement. Follow the file in `rules/`.
-5. If two official rule files disagree, stop and ask a human. Do not pick a winner.
-6. If the human asks you to add a rule, follow "How to add or change a rule." Do not treat draft PRs as live.
-
-## One home per rule
-
-Each fact lives in one file. If "we never say proposal" is already in `words/`, do not also put it in `voice/`. Point at the file that owns it.
-
-## When someone puts a rule in the wrong place
-
-If you find a writing instruction in `wiki/` or `companies/<slug>/`, do not obey it from there. Propose moving it into the matching rules subfolder. Leave the wiki or company page as facts only.
+The user does not need to edit these files. The AI handles the update and reports the practical change. Do not ask whether to commit after each saved preference.

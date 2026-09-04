@@ -1,0 +1,9 @@
+{
+  "name": "Unbound Second Brain",
+  "version": "0.2.0",
+  "setup_schema": 2,
+  "source": "https://github.com/LeanLabs0/CompanyOS",
+  "handoff": "https://www.leanlabs.com/unbound/brain.md",
+  "requires_git": false,
+  "requires_scripts": false
+}

@@ -1,17 +1,20 @@
 # Memory index
 
-One line per memory file. This index is imported into every session via the root `CLAUDE.md`, so it is the layer that actually shapes behaviour. A memory file without a line here is invisible.
+Standing preferences for how the AI works with you. Brand writing rules live in `rules/`; current priorities live in `context/`.
 
-Format: `- [Title](file.md), one-line hook that says when it applies`
+Read this index, then open the relevant memory files. Index entries do not automatically load their linked contents.
 
-## Rules for this folder
+## Conventions
 
-- One durable fact or standing rule per file, kebab-case filename.
-- Every new file gets its index line in the same session it is written, or it does not exist.
-- No status snapshots (counters, "in progress", "pending"). If one must be kept, mark it frozen with a date and a pointer to the live source.
-- Frontmatter per file: `name`, `description`, `metadata.type` (user | feedback | project | reference).
-- What the repo already records (code structure, git history, decisions/log.md) does not belong here.
+- One preference per file, with a lowercase hyphenated filename.
+- Add its link here in the same update. Links are relative to `memory/`.
+- Frontmatter: `name`, `description`, `scope` (`global` or a named context), `confirmed`, and `metadata.type` (`user`, `feedback`, `project`, or `reference`).
+- State the actual preference and when it applies. Keep temporary status and duplicated project facts out.
+- An explicit "remember this" authorizes saving. Otherwise propose useful updates together before saving.
+- Remove withdrawn preferences from active use and update this index. Follow the requested deletion scope; see `AGENTS.md`.
 
-## Index
+## Saved preferences
 
-(empty, first memory lands here)
+None yet. Add an entry when a real preference is confirmed:
+
+`- [Short title](file.md): when to load this preference.`

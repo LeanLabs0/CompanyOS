@@ -1,8 +1,5 @@
 # Voice
 
-How {{company.name}} sounds, and how {{company.founder_or_voice}} sounds when they are the speaker.
+Approved voice and tone preferences. Use one file per scope, for example `acme.md` or `personal.md`. Include scope, approval status, and confirmation date as described in [the rules guide](../READ-THIS-FIRST.md).
 
-**Pages to add later (one at a time):**
-
-- `brand.md` — {{company.name}} voice and tone
-- `founder.md` — {{company.founder_or_voice}} voice when writing in their words
+Samples and interview evidence stay in the brand's flavor file or personal voice reference. Link to them rather than copying them here.

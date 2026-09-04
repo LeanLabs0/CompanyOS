@@ -1,11 +1,3 @@
 # Words
 
-The small official list: words we prefer, words we never use, words we always capitalize a certain way.
-
-This is the folder for “always capitalize this word.”
-
-**Pages to add later (one at a time):**
-
-- `preferred-terms.md`
-- `banned-terms.md`
-- `capitalization.md`
+Approved terms, capitalization, and words to avoid. Use one file per scope, such as `acme.md`, with the metadata described in [the rules guide](../READ-THIS-FIRST.md). Do not invent banned words during setup.

@@ -1,2 +1,2 @@
-description = "OS skill: audit (reads the canonical SKILL.md and follows it)"
-prompt = "Read the file .agents/skills/audit/SKILL.md in this repo and follow it exactly, step by step, for the current user and conversation."
+description = "Second brain workflow: audit"
+prompt = "Read AGENTS.md at the kit root, then .agents/skills/audit/SKILL.md relative to that root. Use the canonical workflow for the current request; current user instructions take precedence over kit conventions."

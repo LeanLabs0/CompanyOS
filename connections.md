@@ -1,17 +1,14 @@
 # Connections
 
-Registry of every system your AIOS can reach. Filled by `/onboard` from Q4-Q7 answers; expanded over time as you wire new tools. `/audit` checks this file for domain coverage and freshness.
+No connections are required. Shared documents and local files are useful sources on their own.
 
-| # | Domain | Tool | Mechanism | Auth | Last checked |
+The AI maintains this table when you ask to connect a tool. Naming a tool or seeing configuration does not prove access. Prefer an existing supported connection; write an integration only when the task needs one.
+
+| Tool | Purpose and brand scope | Access approved | Mechanism | Status | Last successful check |
 |---|---|---|---|---|---|
-| 1 | Revenue / Financials | _filled by /onboard_ | not yet connected |, |, |
-| 2 | Customer interactions | _filled by /onboard_ | not yet connected |, |, |
-| 3 | Calendar | _filled by /onboard_ | not yet connected |, |, |
-| 4 | Communication | _filled by /onboard_ | not yet connected |, |, |
-| 5 | Project / task tracking | _filled by /onboard_ | not yet connected |, |, |
-| 6 | Meeting intelligence | _filled by /onboard_ | not yet connected |, |, |
-| 7 | Knowledge / files | _filled by /onboard_ | not yet connected |, |, |
 
-**Mechanism options:** `mcp` (MCP server), `script` (Python/Bash hitting an API, in `scripts/`), `export` (CSV/JSON dump pipeline), `key+ref` (`.env` key + `references/{tool}-api.md` guide), `not yet connected`.
+No tools connected yet.
 
-When you wire a new tool, also save `references/{tool}-api.md` capturing endpoints, auth flow, and common queries, researched-once-saved-forever.
+Status is `not connected`, `configured but unverified`, `verified`, or `needs attention`. A successful check records the date and a harmless operation that worked. Credentials belong in a sign-in or secret store, never this table, the wiki, or chat.
+
+For exports, record source and export date. Do not present them as live data. See `references/connections.md` for optional setup guidance.

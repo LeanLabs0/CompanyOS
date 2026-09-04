@@ -1,7 +1,3 @@
-# Community
+# Community replies
 
-Rules for informal public replies: Reddit, Quora, forums, social comments. Peer voice, not guru voice.
-
-**Pages to add later (one at a time):**
-
-- `peer-voice.md`
+Approved preferences for replies in a specific community and brand scope. Follow [the rules guide](../READ-THIS-FIRST.md). Drafting a reply does not authorize posting it.

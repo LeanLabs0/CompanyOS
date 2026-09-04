@@ -1,6 +1,6 @@
 # Decisions Log
 
-Append-only record of meaningful decisions and why they were made. `/level-up` Phase 2 (Method interview) writes scoped automation specs here. You can also append manually whenever you decide something worth remembering.
+Append-only record of meaningful decisions and why they were made. The AI adds an entry when you ask to save a decision or approve a proposed save. A later correction gets a new entry; old decisions stay dated history. Git is optional.
 
 **Format per entry:**
 

@@ -1,9 +1,3 @@
 # Quality
 
-Hard writing rules. If a draft breaks these, it gets rewritten before anything else is checked.
-
-**Pages to add later (one at a time):**
-
-- `non-negotiables.md`
-- `bad-copy.md`
-- `brocabulary.md`
+Approved quality requirements for a named brand or personal writing. Use scope and approval metadata from [the rules guide](../READ-THIS-FIRST.md). Apply global rules only when the user explicitly made them global.
