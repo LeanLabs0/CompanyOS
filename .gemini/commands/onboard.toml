@@ -1,0 +1,2 @@
+description = "OS skill: onboard (reads the canonical SKILL.md and follows it)"
+prompt = "Read the file .agents/skills/onboard/SKILL.md in this repo and follow it exactly, step by step, for the current user and conversation."

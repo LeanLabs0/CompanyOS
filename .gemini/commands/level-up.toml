@@ -1,0 +1,2 @@
+description = "OS skill: level-up (reads the canonical SKILL.md and follows it)"
+prompt = "Read the file .agents/skills/level-up/SKILL.md in this repo and follow it exactly, step by step, for the current user and conversation."
