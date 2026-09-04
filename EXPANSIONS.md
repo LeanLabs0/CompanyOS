@@ -79,6 +79,11 @@ Two yeses = add. One yes = wait.
 
 > *Your AIOS structure should look like a small, well-run business, not a hoarder's basement. When you can't find something, that's a signal to consolidate, not to add another folder.*
 
+
+## Unbound handoff (not in this repo)
+
+Unbound publishes **one** web `brain.md` (Day-1 setup + ongoing loop). This repo is the kit. Do not re-add `brain.md`, `loop-setup.md`, or `loop-routine.md` here as the install playbook.
+
 ## Scripts note (identity vs compose)
 
 - `scripts/compose.py` — Ralph memory/pinned-brand inliner. Needs **Python**.

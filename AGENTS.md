@@ -18,6 +18,7 @@ Read `references/operator-framework.md` once. It's how {{Your Name}} thinks abou
 
 ## Company stamp + writing law (Unbound)
 
+- **Unbound handoff:** Unbound publishes one web `brain.md` (Day-1 setup + ongoing loop in that single page). This repo is the **kit** — clone it; do not keep `brain.md` / `loop-setup.md` / `loop-routine.md` in-repo as the install playbook.
 - `company.json` at repo root is the compact identity card (`name`, `slug`, `domain`, `short_name`, `founder_or_voice`, `repo_url`, …). Shape: `company.example.json`.
 - After filling it, stamp tokens with `node scripts/apply-company.mjs` (`--dry-run` first). If Node is missing, replace `{{company.*}}` manually. Day-one identity does **not** require Python.
 - `rules/` is writing law (voice, words, quality, structure, visual, linking, community). Writing rules live **only** in `rules/` — not in `wiki/` or `companies/`.

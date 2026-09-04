@@ -4,7 +4,12 @@ A starter kit that turns a coding agent (Claude Code, Gemini, Codex) into a pers
 
 De-branded internal base, kept as reference material and as a candidate skeleton for client installs.
 
+## Unbound handoff
+
+Unbound publishes **one** web `brain.md` (setup + routine). This repository is the starter **kit** agents clone. Install/loop playbooks are not kept as `brain.md` / `loop-setup.md` / `loop-routine.md` in this repo.
+
 ---
+
 
 # The course: from zero to a working AI OS
 
