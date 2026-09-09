@@ -39,12 +39,12 @@ With invented data, record app/version, OS, mode, kit version, date, and observe
 
 ## Release order
 
-The live handoff belongs to LeanLabs0/leanlabs-worker at content/unbound/brain.md. The reviewed replacement is staged at [.company-os/release/brain.md](../release/brain.md) in this kit. Do not treat the old Documents/unbound-web copy as another publishing source.
+The live handoff belongs to LeanLabs0/leanlabs-worker at content/brain.md. The reviewed replacement is staged at [.company-os/release/brain.md](../release/brain.md) in this kit. Do not treat the old Documents/unbound-web copy as another publishing source.
 
 1. Review local changes and complete the tests and relevant app acceptance checks.
 2. With publishing authorization, release kit 0.3.0/schema 3 to LeanLabs0/CompanyOS.
 3. Clone the actual published starter into a disposable location and verify the release contract.
-4. With publishing authorization, update leanlabs-worker/content/unbound/brain.md from the staged handoff and deploy using that repository's instructions.
+4. With publishing authorization, update leanlabs-worker/content/brain.md from the staged handoff and deploy using that repository's instructions.
 5. Fetch the public handoff and run a clean installation against the actual published URLs.
 
 A local build does not authorize commits, pushes, PRs, deployment, global installation on the maintainer's machine, or schedule registration. Keep those results reviewable and report which checks remain unverified.

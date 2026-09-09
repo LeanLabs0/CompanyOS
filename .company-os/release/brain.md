@@ -73,6 +73,3 @@ Provide this prompt with the actual resolved path:
 Verify a fresh conversation from another project can retrieve the saved files. Do not require every chat to start inside CompanyOS. If global discovery fails, keep the explicit path fallback and record the limitation honestly.
 
 Record the actual kit version, folder, app, deliverable, backup status, and verification evidence in .company-os/setup.md.
-
-Handoff revision: 0.3.0. Canonical URL: https://www.leanlabs.com/unbound/brain.md
-Publishing source: LeanLabs0/leanlabs-worker, content/unbound/brain.md.

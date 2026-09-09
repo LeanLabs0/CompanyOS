@@ -6,7 +6,7 @@ Your personal second brain, with a shared company wiki. Talk to your agent, answ
 
 In ChatGPT Work, Claude, or another agent with local shell and persistent folder access, say:
 
-> Set up Company OS using https://www.leanlabs.com/unbound/brain.md
+> Set up Company OS using https://www.leanlabs.com/brain.md
 
 The agent checks or installs Git, GitHub CLI, and Node/npm as needed. You handle account sign-in, browser approval, and folder permissions. It clones the starter into Documents/CompanyOS and removes the starter remote before saving your information.
 

@@ -11,7 +11,7 @@ Resolve the brain from an explicit task path or the machine's user-home pointer 
 
 Read the resolved brain's AGENTS.md and .company-os/workflows/prime.md, then continue the task. For setup, read .company-os/workflows/onboard.md instead. For an existing personal backup URL on a new computer, follow the restore skill or the brain's recovery reference.
 
-For a fresh install with no brain files, read https://www.leanlabs.com/unbound/brain.md. Verify the live handoff's setup schema matches the intended kit; do not invent a missing starter or overwrite existing work.
+For a fresh install with no brain files, read https://www.leanlabs.com/brain.md. Verify the live handoff's setup schema matches the intended kit; do not invent a missing starter or overwrite existing work.
 
 Apply only context relevant to the task's named company. Keep the current project's own instructions, working directory, and deliverable location. Brain Git commands must use the absolute helper path; never push the current project by accident.
 

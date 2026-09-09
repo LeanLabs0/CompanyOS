@@ -3,7 +3,7 @@
   "version": "0.3.0",
   "setup_schema": 3,
   "source": "https://github.com/LeanLabs0/CompanyOS",
-  "handoff": "https://www.leanlabs.com/unbound/brain.md",
+  "handoff": "https://www.leanlabs.com/brain.md",
   "requires_git": true,
   "requires_scripts": true,
   "node_minimum": 22,
