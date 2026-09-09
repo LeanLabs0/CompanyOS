@@ -1,2 +1,0 @@
-description = "Second brain workflow: level-up"
-prompt = "Read AGENTS.md at the kit root, then .agents/skills/level-up/SKILL.md relative to that root. Use the canonical workflow for the current request; current user instructions take precedence over kit conventions."

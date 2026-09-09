@@ -5,3 +5,4 @@
 *.mjs text eol=lf
 *.toml text eol=lf
 *.json text eol=lf
+.company-os/scripts/hooks/pre-push text eol=lf

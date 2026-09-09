@@ -1,21 +1,10 @@
-# Wiki index
+# Company knowledge
 
-Read this index before answering questions about saved knowledge. Open the relevant pages; the index is not their full content.
+Everything in this wiki is company-shareable.
 
-## Sources
+- [Company facts](company.md)
+- [Brand and audience](brand.md)
+- [Approved company rules](rules.md)
+- [Company corrections](../corrections/index.md)
 
-No client sources ingested yet.
-
-## Entities
-
-None yet.
-
-## Concepts
-
-None yet.
-
-## Syntheses
-
-None yet.
-
-The kit's historical wiki example is in [references/examples/llm-wiki](../references/examples/llm-wiki/README.md). It is demonstration material, not knowledge about the user or their clients.
+Add source and topic links as useful knowledge is saved. Open relevant pages; this index is not their full content. Skill source packages can live under skills/ and are installed separately.

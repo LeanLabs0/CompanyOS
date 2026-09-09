@@ -1,0 +1,3 @@
+#!/bin/sh
+# Git starts this hook in the repository root. Node runs the same deterministic guard as backup.
+exec node .company-os/scripts/company-os.mjs guard --remote "$1" --url "$2"

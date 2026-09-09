@@ -1,0 +1,12 @@
+{
+  "name": "company-os",
+  "version": "0.3.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "check": "node .company-os/scripts/check-kit.mjs",
+    "check:release": "node .company-os/scripts/check-release.mjs"
+  }
+}

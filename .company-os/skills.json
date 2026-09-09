@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "installed": [],
+  "core": [
+    "company-os",
+    "company-os-sync",
+    "company-os-restore"
+  ],
+  "offered": [
+    "grill-me"
+  ],
+  "additional_optional_slots": 3
+}

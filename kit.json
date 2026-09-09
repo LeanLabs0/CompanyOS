@@ -1,9 +1,19 @@
 {
-  "name": "Unbound Second Brain",
-  "version": "0.2.0",
-  "setup_schema": 2,
+  "name": "Company OS",
+  "version": "0.3.0",
+  "setup_schema": 3,
   "source": "https://github.com/LeanLabs0/CompanyOS",
   "handoff": "https://www.leanlabs.com/unbound/brain.md",
-  "requires_git": false,
-  "requires_scripts": false
+  "requires_git": true,
+  "requires_scripts": true,
+  "node_minimum": 22,
+  "shared_paths": [
+    "wiki/",
+    "corrections/"
+  ],
+  "remote_names": [
+    "personal",
+    "company"
+  ],
+  "company_publication": "reviewed-batch"
 }
