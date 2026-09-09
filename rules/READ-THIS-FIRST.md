@@ -1,4 +1,4 @@
-# Use the right writing rules
+﻿# Use the right writing rules
 
 This folder holds approved instructions for writing and design. Brand profiles contain evidence and links to these rules. Personal samples in `references/voice.md` are evidence too, not universal instructions for every client.
 
@@ -35,7 +35,7 @@ Name files by scope, for example `words/acme.md`. State each instruction in one 
 ## Apply and update
 
 1. Establish the active brand from the task or the confirmed default. If ambiguous, clarify before mixing client information.
-2. Load approved global rules and approved rules for that scope and output type. Do not load another client's rules.
+2. Load approved global rules and approved rules for that scope and output type. Before writing or reviewing, load `quality/copy-rules.md`. Do not load another client's rules.
 3. Follow the user's current explicit instruction. For saved rules, the more specific scope wins; within the same scope, an explicitly superseding confirmed revision wins. If a material conflict remains unresolved, surface it rather than guessing.
 4. For existing unscoped files, establish scope from their provenance and context. Do not assume global scope or silently discard previously confirmed preferences. Move an operational rule from an older flavor file into the appropriate rule file, preserving confirmation and leaving a link.
 5. When updating a rule, preserve unrelated instructions. A correction to a known rule authorizes updating that rule. Keep a prior version in `archives/` unless the user requested deletion instead.
