@@ -77,11 +77,13 @@ Keep .company-os/setup.md to brief dated setup evidence: app/mode, folder, verif
 
 ## Verify outside this folder
 
-Give an exact return prompt:
+After verifying core skill discovery, show `/company-os` followed by a useful request; do not prescribe one fixed phrase. For the fresh-conversation check, suggest:
 
-> Use Company OS from [absolute brain path]. Read its AGENTS.md and .company-os/workflows/prime.md. Tell me my current priority and one saved preference or identity fact, citing the files. Then help with [task].
+> /company-os Tell me my current priority and one saved preference or identity fact, citing the files. Then help with [your next task].
 
-A same-session readback is not a fresh-conversation test. Ask the user to start a fresh conversation in another project with permitted access to the brain. Mark cross-project recall verified only after that session reads and cites the saved files. Label user-reported results. If discovery fails, retain the explicit path prompt and fix the route without restarting onboarding.
+The skill handles the locator, AGENTS.md, prime workflow, and loading saved context. Do not give the user a long filesystem/instruction-reading prompt as the normal return flow. If this app uses a skill selector instead of slash invocation, provide its verified equivalent. If discovery or access fails, offer an explicit absolute-path loader for troubleshooting and fix the route without restarting onboarding.
+
+A same-session readback is not a fresh-conversation test. Ask the user to try the skill in a fresh conversation in another project with permitted brain access. In that session, the agent verifies recall by reading a saved priority and a preference or identity fact and cites the files naturally. The suggested request can ask for this check; everyday skill use need not repeat it. Mark cross-project recall verified only after that check, and label user-reported results.
 
 In the new conversation, verify existing GitHub authentication through the supported network-enabled context without starting another login. Track this separately from successful fresh shell calls in one conversation. Verify the actual remote personal backup and reviewed company publication; local Git and account authentication alone do not prove either outcome. Do not claim second-machine recovery is tested until a restore has been verified.
 

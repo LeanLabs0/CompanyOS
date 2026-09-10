@@ -31,6 +31,8 @@ A journal records the before/after import and next baseline. Recovery completes 
 
 prepare imports nonconflicting incoming changes and records a content-addressed pending batch under the ignored sync workspace. It writes a full before/after review and returns its identity. Company publication is a separate command requiring that exact reviewed ID.
 
+That ID is an internal agent-to-helper detail. Present a concise chat summary with real before/after examples, all material changes and deletions, and the exact company destination. Keep the full review file available as optional detail. Accept an unambiguous "Approve" for that presented review and pass its retained ID to the helper; do not make users type hashes or commands. Reprepare and obtain a new approval if content or the company revision changes.
+
 publish verifies payload integrity, current file digest, repository identity, branch, and unchanged company revision. It creates one company-only commit with a neutral company-only message. Concurrent remote changes reject the push or invalidate the review. Reprepare instead of forcing.
 
 Review files are disposable and do not need recovery backup: the unpublished source files and company baseline are in personal backup. After a new-machine restore, create a fresh review.

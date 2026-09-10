@@ -40,7 +40,7 @@ Setup installs the global company-os, company-os-sync, and company-os-restore sk
 
 The global loader finds your registered brain and reads the relevant context without changing your project's own instructions. Company skills apply to their named company, not every conversation.
 
-Skill discovery and folder access differ by app. Setup verifies a fresh conversation outside CompanyOS. If automatic discovery is unavailable, the agent supplies an explicit folder-based return prompt. See [app setup](.company-os/references/app-setup.md).
+To return, use `/company-os` followed by your request, or select Company OS through your app's skill menu. For example: `/company-os Help me plan next week's campaign.` The skill finds your brain and loads the relevant context. Setup verifies discovery and a fresh conversation outside CompanyOS. An explicit folder-based prompt is reserved for troubleshooting missing discovery or access. See [app setup](.company-os/references/app-setup.md).
 
 ## A new computer
 

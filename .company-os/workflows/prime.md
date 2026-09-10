@@ -2,6 +2,8 @@
 
 Resolve the brain from the current task's explicit path or the machine pointer at ~/.company-os/brain.json. If both exist and disagree, ask which brain is intended. A missing pointer can fall back to Documents/CompanyOS only after checking kit.json and asking about material ambiguity. Never assume the current project folder is the brain.
 
+The normal entry point is `/company-os` followed by the user's request, or the app's verified skill-selector equivalent. Perform the file reads below yourself. For a general help request, briefly acknowledge the saved priority and propose a useful next action. A return example can ask for the recall check below, but do not require it for everyday use or make the user specify internal file paths.
+
 1. Read the brain's AGENTS.md, .company-os/setup.json, and .company-os/setup.md if present.
 2. If the setup schema is old, use migration guidance; do not reinterpret private wiki content as company-shareable.
 3. Unless the user requested read-only/no-sync work, run the absolute helper's sync command when repositories are configured. This first backs up or fast-forwards personal state, then prepares company changes and backs up the imported result. It does not publish company changes. A failed sync is visible; keep helping from known local context when appropriate and label freshness.

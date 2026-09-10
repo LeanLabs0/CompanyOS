@@ -84,17 +84,19 @@ Source files bundled with the kit are not an installation method by themselves. 
 
 Save a useful first deliverable and read it back. Personal backup is enabled during setup and runs automatically. Incoming company changes are reconciled; outgoing wiki/correction changes are prepared for the user's review.
 
-Show the company destination and meaningful before/after changes. Publish only the exact batch the user approves. Conflicts stop for a decision. Do not require a separate company-owner approval process.
+Show a brief company review directly in chat: the exact destination, material additions/edits/deletions, and concrete examples from the actual before/after content. Keep .company-sync/review.md as optional detail; the user need not open it to understand the decision. Keep batch IDs and publish commands internal. Ask "Share these changes? Reply 'Approve' or tell me what to change." A clear approval of that one current review authorizes the helper's exact retained ID; clarify ambiguous replies. Changed content or company revisions require a new review. Conflicts stop for a decision. Do not require a separate company-owner approval process.
 
 Offer an optional scheduled review in the user's chosen app. Prove that its scheduled session can reach the local brain before enabling it. A routine can back up personal work and prepare a company batch; it cannot approve that batch for the user.
 
 ### 6. Verify return from another project
 
-Provide this prompt with the actual resolved path:
+After verifying core skill discovery, show `/company-os` followed by a request relevant to the user's next task. It is an entry point, not a fixed phrase. For the fresh-conversation recall check, suggest:
 
-> Use Company OS from [absolute brain path]. Read its AGENTS.md and .company-os/workflows/prime.md. Tell me my current priority and one saved preference or identity fact, citing the files. Then help with [task].
+> /company-os Tell me my current priority and one saved preference or identity fact, citing the files. Then help with [your next task].
 
-Verify a fresh conversation from another project can retrieve the saved files. Do not require every chat to start inside CompanyOS. If global discovery fails, keep the explicit path fallback and record the limitation honestly.
+The skill locates the brain, reads its instructions and saved context, and helps with the user's current work. The user should not need to name AGENTS.md, workflow files, or a filesystem path. If the app exposes skills through a selector instead of that slash syntax, show its verified equivalent. Do not claim invocation works until discovery is verified.
+
+Ask the user to try the skill in a fresh conversation from another project. The agent checks recall by reading the saved priority and a preference or identity fact. The example may request that check, but do not make it mandatory for everyday use: `/company-os Help me plan next week's campaign` is another valid request. Do not require every chat to start inside CompanyOS. Use an explicit absolute-path loader only to troubleshoot missing skill discovery or folder access, and record that fallback honestly rather than presenting it as the normal experience.
 
 In that fresh conversation, also check GitHub authentication through the supported network-enabled context without starting another login. Verify actual personal backup and company publication against the intended remote repositories before reporting them as passed. Report folder access, Git, auth in fresh calls, auth across conversations, skill discovery, backup, and company sync separately; a partial compatibility test is not a completed installation. For a replacement computer, use the personal repository's restore workflow; reopening a disposable Windows Sandbox creates a fresh machine environment and may require sign-in again.
 

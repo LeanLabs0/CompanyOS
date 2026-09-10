@@ -10,6 +10,8 @@ Ask for cadence, timezone, chosen app, and which machine should own the routine.
 
 A later approval can be handled by an interactive agent using the same pending batch. Recheck exact content and remote revision. If the scheduled session cannot receive a reply, it leaves a pending review; it does not poll indefinitely or auto-approve.
 
+Present the scheduled review in plain language with concrete examples and material deletions, following the sync workflow. Keep batch IDs internal and the full review file optional. A clear "Approve" in the interactive conversation is enough for that exact presented review; clarify an ambiguous reply.
+
 ## Validate the chosen host before enabling
 
 1. Create a test run with invented data or a harmless setup marker, using the actual scheduler.

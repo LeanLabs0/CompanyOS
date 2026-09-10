@@ -7,6 +7,8 @@ description: Set up, load, or use Company OS personal context and company knowle
 
 This is a globally installed entry point. Its installation directory is not the user's brain.
 
+Users return through `/company-os` followed by their request (or the app's verified skill-selector equivalent), not one required phrase. Handle the locator and instruction reads yourself; do not ask the user to paste a filesystem-heavy loading prompt. A useful verification example is `/company-os Tell me my current priority and one saved preference or identity fact, citing the files. Then help with [your next task].` For a general "help me," load the saved context, briefly name the current priority, and offer a useful next action based on it. Ask only for information still needed. Verify requested facts from the files and cite them naturally. Explicit paths are a troubleshooting fallback when discovery or access is missing.
+
 Resolve the brain from an explicit task path or the machine's user-home pointer at .company-os/brain.json. Read the pointer with available filesystem tools; never infer a previous session's path. If it is missing, inspect the user's Documents/CompanyOS for kit.json. Ask for the brain path or personal backup URL if it cannot be found. Do not search unrelated client folders broadly.
 
 Read the resolved brain's AGENTS.md and .company-os/workflows/prime.md, then continue the task. For setup, read .company-os/workflows/onboard.md instead. For an existing personal backup URL on a new computer, follow the restore skill or the brain's recovery reference.
