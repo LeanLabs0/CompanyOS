@@ -7,11 +7,11 @@ Setup authorizes installing the required tools and core skills, creating the two
 ## Establish the persistent shell
 
 1. Read AGENTS.md, kit.json, .company-os/setup.json, and .company-os/setup.md if present. Resume completed choices. A second-machine request with a personal repository URL follows [recovery](../references/recovery.md), not starter onboarding.
-2. Verify the shell writes to a persistent folder on the user's computer. Resolve the user-visible path; do not confuse a temporary container with the host filesystem. Default to Documents/CompanyOS.
-3. Git, Node 22 or newer, npm/npx, and GitHub CLI are required. Check all four, install missing tools using the platform's supported installer, refresh the shell PATH when needed, and verify their version commands. Do not wait for repository or skill choices before installing them. Do not ask "Should I install GitHub CLI/npm?" or leave that installation as a task for the user. Report an actual failure and recovery step if installation cannot finish. Do not offer archive downloads.
+2. Verify the shell writes to a persistent folder on the user's computer. Resolve the user-visible path; do not confuse a temporary container with the host filesystem. Default to Documents/CompanyOS. Follow [app setup](../references/app-setup.md) before installing or cloning: ChatGPT Work needs the brain attached to a local project and primary during setup; Cowork needs the exact brain root connected and its supported deletion permission. If access is missing, guide the user to select the folder, then continue with their previous answers. Inspect remotes and setup state before resuming an existing folder: a starter remote does not distinguish a maintainer checkout from an unfinished installation. Establish its intended use before converting it.
+3. Git, Node 22 or newer, npm/npx, and GitHub CLI are required. Check all four, install missing tools using the platform's supported installer, refresh the shell PATH when needed, and verify their version commands. On Windows, check C:\Program Files\GitHub CLI\gh.exe before declaring gh missing, and ensure helper subprocesses inherit its directory on PATH. Do not wait for repository or skill choices before installing them. Do not ask "Should I install GitHub CLI/npm?" or leave that installation as a task for the user. Report an actual failure and recovery step if installation cannot finish. Do not offer archive downloads.
 4. For a new starter, clone the published source into an empty destination, remove its origin remote immediately, and rename the local branch to main if necessary. Never clone over an existing folder. See the [setup handoff](https://www.leanlabs.com/brain.md).
 5. For an older kit, preserve existing content and follow [migration](../references/migration.md). Do not assume an existing wiki is safe to share.
-6. Read and write a uniquely named note inside the chosen folder if persistence has not been demonstrated. Record the actual host path and app mode.
+6. A writable note does not prove Git compatibility or persistence across sessions. If Git access is uncertain, run the scoped disposable Git check from app setup before cloning. Remove only your own verified test directory with permitted deletion so the clone destination stays empty; preserve pre-existing work. Record the actual host path, app mode, and separate Git/auth outcomes. Verify persistence in a fresh conversation.
 
 ## Context and automatic setup
 
@@ -28,7 +28,7 @@ Ask the next missing question, combining related choices when convenient. Skip k
 
 ## GitHub and initialization
 
-Inspect gh auth status and start browser sign-in immediately when needed:
+Follow the authentication checks in [app setup](../references/app-setup.md). First run gh auth status --hostname github.com --active and gh api --hostname github.com user --jq .login in the app's supported network-enabled execution context. An offline network error or inaccessible credential store does not establish that a login expired. Check the actual identity and configuration path before requesting another login. Once a supported secure credential route is established, start browser sign-in when needed:
 
 ~~~text
 gh auth login --hostname github.com --git-protocol https --web --clipboard
@@ -36,6 +36,8 @@ gh auth setup-git --hostname github.com
 ~~~
 
 Always show the actual one-time device code produced by the active CLI sign-in in a code block, plus the clickable sign-in URL and “Enter this code on that page.” Do this even if the browser opened or the code was copied to the clipboard; the user must be able to read and type it. Never invent a code. If asked again, repeat the still-valid code or restart sign-in if expired. Keep the CLI flow running while the user approves. Do not save codes in brain files or repositories. Never ask for an access token in chat. Verify the logged-in account and repository access before continuing.
+
+Wait for CLI completion, then repeat both auth checks from fresh network-enabled shell calls. Browser success alone is not completion. Run helpers that need GitHub in the supported authenticated context too; never bypass the sandbox, manually switch users, broaden ACLs, copy tokens between isolated environments, or enable plaintext credential storage. If a secure route is unavailable, report the blocker without installing a sandbox keyring or claiming every future session needs a new login. A 404 for a configured private repository can mean missing access or a deleted/renamed destination; establish the cause and the user's intent before creating any replacement. Do not reset repository identities or sync baselines automatically.
 
 For creation, use gh repo create OWNER/NAME --private without --push or --clone. Do not initialize the company repository with a README, license, or template tree. The sync helper creates its first company-only commit.
 
@@ -80,6 +82,8 @@ Give an exact return prompt:
 > Use Company OS from [absolute brain path]. Read its AGENTS.md and .company-os/workflows/prime.md. Tell me my current priority and one saved preference or identity fact, citing the files. Then help with [task].
 
 A same-session readback is not a fresh-conversation test. Ask the user to start a fresh conversation in another project with permitted access to the brain. Mark cross-project recall verified only after that session reads and cites the saved files. Label user-reported results. If discovery fails, retain the explicit path prompt and fix the route without restarting onboarding.
+
+In the new conversation, verify existing GitHub authentication through the supported network-enabled context without starting another login. Track this separately from successful fresh shell calls in one conversation. Verify the actual remote personal backup and reviewed company publication; local Git and account authentication alone do not prove either outcome. Do not claim second-machine recovery is tested until a restore has been verified.
 
 ## Final step: recommend optional skills
 

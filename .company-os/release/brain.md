@@ -2,7 +2,11 @@
 
 Company OS is a personal second brain with a shared company wiki. You answer questions, paste useful URLs, and approve sign-ins. Your agent manages files, Git, and skills.
 
-Paste this page's URL into ChatGPT Work, Claude, or another agent with local shell access:
+Before setup, create an empty CompanyOS folder inside Documents, or select your existing brain folder. In ChatGPT Work, use **Choose project** to open a local project with that folder attached as its primary folder. In Claude Cowork, use **Add folder** to connect CompanyOS itself, not the parent Documents folder. Your agent will guide you through any required folder permission.
+
+ChatGPT Work has passed local Git and secure GitHub sign-in checks in a Windows test; full setup and recovery still need end-to-end verification. Cowork has passed local Git checks with folder deletion permission, but secure GitHub authentication remains blocked in the tested environment. Folder selection alone does not resolve that limitation.
+
+Then paste this page's URL into your agent:
 
 > Help me set up Company OS using this page.
 
@@ -16,7 +20,11 @@ A request to set up Company OS authorizes installing required tools and core ski
 
 Verify shell access to a persistent folder the user controls. Default to Documents/CompanyOS, but resolve the actual user-visible path. A cloud shell or temporary tool folder is not proof of local installation.
 
-Check for an existing brain before cloning anything. If present, read its AGENTS.md and setup state and resume. Preserve user files. For an older kit, use a reviewed migration; do not replace personalized files wholesale.
+If the brain folder is not accessible, guide the user before installing tools or cloning: "Create or select your CompanyOS folder, open it as a local project in ChatGPT Work, then say 'Continue setup.'" For Cowork, ask them to connect that exact folder using Add folder. Verify the actual connected root; selecting a project name alone is not proof of folder access. If a parent folder is already connected and prevents scoped permission, start a task with only the brain folder connected. Preserve answered questions when continuing.
+
+Cowork needs its supported deletion permission for the exact connected brain root because Git removes its own temporary files. Explain that the permission covers that folder's subtree and may need approval in later sessions. Do not request deletion across Documents, bypass a rejected request, or assume a successful file write proves Git works. If permission or secure authentication is unavailable, report the specific blocker before creating repositories; do not promise a new login every session or install a sandbox keyring as an automatic workaround.
+
+Check for an existing brain before cloning anything. Inspect its remotes as well as AGENTS.md and setup state. A folder still pointing at LeanLabs0/CompanyOS may be a maintainer checkout or an unfinished starter; do not convert it merely because kit.json exists. Preserve it and establish its intended use if unclear. Resume an identified brain, preserving user files. For an older kit, use a reviewed migration; do not replace personalized files wholesale.
 
 For an older 0.3.x installation, follow the current starter's migration reference. Update its runtime, instructions, skill sources, and version metadata from an inspected current starter before resuming. Preserve personal/, wiki/, corrections/, repository settings, the sync baseline, and the installed-skill record. The configure step personalizes its README and removes only recognized unchanged starter material. Do not create a second brain or repeat answered questions. Update all syncing teammates to 0.4.0+ before publishing company root instructions; older helpers reject those files.
 
@@ -24,7 +32,9 @@ If the user is restoring an existing private personal backup, clone that reposit
 
 ### 2. Check prerequisites and clone
 
-Git, Node 22+, npm/npx, and GitHub CLI are requirements. Check and install missing tools now through supported OS installers, then verify their version commands. Refresh the shell PATH when needed. Do not postpone GitHub CLI or npm installation until the user selects repositories or optional skills, and do not ask "Should I install them?" The user handles unavoidable OS/app approvals and sign-in; the agent runs the installers. Report concrete blockers rather than treating requirements as optional.
+Git, Node 22+, npm/npx, and GitHub CLI are requirements. Once folder access and required permissions are established, check and install missing tools through supported OS installers, then verify their version commands. Refresh the shell PATH when needed. On Windows, check the installed GitHub CLI executable at C:\Program Files\GitHub CLI\gh.exe before declaring it missing; ensure helper subprocesses inherit a PATH that finds it too. Do not postpone GitHub CLI or npm installation until the user selects repositories or optional skills, and do not ask "Should I install them?" The user handles unavoidable OS/app approvals and sign-in; the agent runs the installers. Report concrete blockers rather than treating requirements as optional.
+
+When Git access is uncertain, test initialization and two harmless commits in a uniquely named disposable subfolder of the selected root, using a repository-local test identity. Check for a clean tree and leftover locks. Clean up only the test directory you created, after verifying its resolved path and permitted deletion, before cloning into the empty destination. Preserve any pre-existing files or failed clone; do not rename or remove another process's lock without establishing it is stale. No compatibility-test files belong in backups. Record local Git and network authentication as separate checks.
 
 Install the starter using Git:
 
@@ -49,6 +59,10 @@ Ask about the user's name/role, company/client, priority, and a useful source. R
 - company: a separate private repository containing wiki/, corrections/, and its own short README.md and AGENTS.md, with company-only history. These root documents never include personal backup references or replace personal instructions.
 
 Use GitHub CLI for repository creation. Start browser authentication through gh auth login --web when needed. Always show the actual active one-time code in a code block, the clickable sign-in URL, and “Enter this code on that page.” Show it even if the browser opened or it is in the clipboard. Repeat a valid code on request or restart an expired flow; never invent or save codes in files. The user signs in and approves; the agent verifies access and configures Git authentication.
+
+First check existing authentication from the app's supported network-enabled execution context with gh auth status --hostname github.com --active and gh api --hostname github.com user --jq .login. On Windows, compare the actual execution identity and resolved GitHub CLI config path when access fails. An offline shell's network error or "token invalid" result is not proof a saved login is bad. Use the supported permission flow for authenticated operations, including helpers that call Git or gh; never switch Windows users manually or bypass sandbox controls. Do not broaden ACLs, print tokens, copy credentials between isolated environments, or enable plaintext storage. If no supported secure credential route is available, stop that part of setup.
+
+Keep one login process alive through completion. Browser approval alone is insufficient: wait for the CLI to finish, then verify authentication from fresh network-enabled shell calls before creating repositories. Distinguish timeout, denied config write, credential retrieval, network restriction, and repository access errors. Successful auth is not proof of repository access or cross-conversation persistence. A configured private repository returning 404 may be missing or inaccessible; do not create a replacement unless the user confirms that intent. Never automatically reset setup or discard sync history after such an error.
 
 Keep personal backup under the authenticated individual's account. For company ownership, list accessible organizations with gh org list and recommend the matching company organization; confirm ambiguous or unsupplied ownership and check access. If none is available, offer creating an organization through GitHub's browser setup or using their individual account. Do not invent a CLI organization-creation command, assume membership permits repository creation, or silently change owners after an access failure. Existing company URLs take precedence. Follow local naming and resume rules; the agent creates the repositories and configures remotes. Respect explicit opt-outs and report incomplete setup honestly.
 
@@ -81,6 +95,8 @@ Provide this prompt with the actual resolved path:
 > Use Company OS from [absolute brain path]. Read its AGENTS.md and .company-os/workflows/prime.md. Tell me my current priority and one saved preference or identity fact, citing the files. Then help with [task].
 
 Verify a fresh conversation from another project can retrieve the saved files. Do not require every chat to start inside CompanyOS. If global discovery fails, keep the explicit path fallback and record the limitation honestly.
+
+In that fresh conversation, also check GitHub authentication through the supported network-enabled context without starting another login. Verify actual personal backup and company publication against the intended remote repositories before reporting them as passed. Report folder access, Git, auth in fresh calls, auth across conversations, skill discovery, backup, and company sync separately; a partial compatibility test is not a completed installation. For a replacement computer, use the personal repository's restore workflow; reopening a disposable Windows Sandbox creates a fresh machine environment and may require sign-in again.
 
 Keep .company-os/setup.md to brief dated evidence: app/mode, folder, verified requirements and skills, backup outcome, and outstanding blockers or recall checks. Read URLs/branches from setup.json and skill sources from skills.json rather than duplicating those records. A cloned folder alone is partial installation. Finish required tooling, repositories, and core skills or name the concrete blocker; company initialization remains pending until its first reviewed batch is published.
 
