@@ -4,7 +4,7 @@ Company OS is a personal second brain with a shared company wiki. You answer que
 
 Before setup, create an empty CompanyOS folder inside Documents, or select your existing brain folder. In ChatGPT Work, use **Choose project** to open a local project with that folder attached as its primary folder. In Claude Cowork, use **Add folder** to connect CompanyOS itself, not the parent Documents folder. Your agent will guide you through any required folder permission.
 
-ChatGPT Work has passed local Git and secure GitHub sign-in checks in a Windows test; full setup and recovery still need end-to-end verification. Cowork has passed local Git checks with folder deletion permission, but secure GitHub authentication remains blocked in the tested environment. Folder selection alone does not resolve that limitation.
+ChatGPT Work/local desktop testing has completed personal backup and reviewed company publication on Windows with prerequisites already installed. Automatic installation on a clean machine and second-machine recovery remain unverified. Cowork has passed local Git checks with folder deletion permission, but secure GitHub authentication remains blocked in the tested environment. Folder selection alone does not resolve that limitation.
 
 Then paste this page's URL into your agent:
 
@@ -33,6 +33,8 @@ If the user is restoring an existing private personal backup, clone that reposit
 ### 2. Check prerequisites and clone
 
 Git, Node 22+, npm/npx, and GitHub CLI are requirements. Once folder access and required permissions are established, check and install missing tools through supported OS installers, then verify their version commands. Refresh the shell PATH when needed. On Windows, check the installed GitHub CLI executable at C:\Program Files\GitHub CLI\gh.exe before declaring it missing; ensure helper subprocesses inherit a PATH that finds it too. Do not postpone GitHub CLI or npm installation until the user selects repositories or optional skills, and do not ask "Should I install them?" The user handles unavoidable OS/app approvals and sign-in; the agent runs the installers. Report concrete blockers rather than treating requirements as optional.
+
+If a prerequisite fails, use [Troubleshooting](#troubleshooting) below before handing work to the user. The agent owns installation; manual commands and download links are a last resort for a concrete unresolved blocker, not an onboarding checklist. Once the starter is available, .company-os/references/troubleshooting.md has the full decision flow.
 
 When Git access is uncertain, test initialization and two harmless commits in a uniquely named disposable subfolder of the selected root, using a repository-local test identity. Check for a clean tree and leftover locks. Clean up only the test directory you created, after verifying its resolved path and permitted deletion, before cloning into the empty destination. Preserve any pre-existing files or failed clone; do not rename or remove another process's lock without establishing it is stale. No compatibility-test files belong in backups. Record local Git and network authentication as separate checks.
 
@@ -109,3 +111,59 @@ As the last onboarding choice, read .company-os/references/skills.md and show it
 Use the user's saved role, priorities, active project briefs, and synced company knowledge to find relevant skills with npx skills find <query>. Search using generic task terms, never private company details or copied brain content. Highlight the best fits from the curated list and add up to three inspected, nonduplicative suggestions with a short reason tied to their work. If search is unavailable, still offer the curated list. Do not ask for context already saved in the repos.
 
 Ask which they want, then install only selected names through the helper's global npx skills add flow using the actual supported agent target and reviewed sources. Find Skills remains useful for later discovery. Email Sequences installs as emails and Social Content as social; older directory names are stale. Verify app discovery, save installation sources for recovery, and back up that record to personal. Optional selection does not authorize company publication, sending emails, or posting content.
+
+### Troubleshooting
+
+Use this section only for the relevant failure. Do not show users every diagnostic or ask them to install tools that already work.
+
+**Agent-led recovery first:**
+
+1. Verify the connected brain folder and actual execution environment. In Cowork, correct a missing root connection or reconnect using the supported app interface and test once. A file bridge that writes documents is not proof that Git can access them. If the same mount failure remains, stop without fabricating a clone through file copying or a Git bundle.
+2. Check each tool and its version. On Windows, inspect existing installation paths for Git, GitHub CLI, and Node before reinstalling. Refresh the process PATH so helper subprocesses can find them. Use npm.cmd/npx.cmd when PowerShell blocks their .ps1 shims; do not weaken execution policy. Keep working installations and version managers intact.
+3. Install missing tools yourself through a supported route. If WinGet is available, use the exact package commands below, one at a time, through the app's supported installation approval flow when required. Wait for completion and verify the result. If WinGet is missing or its package source fails, use a current official installer matching the host architecture when that route is permitted; do not guess a versioned download URL or install another package manager unnecessarily.
+4. Diagnose errors before retrying. A stale PATH, corrected URL, changed permission, or restored network can justify a targeted retry. A command rejected before process creation means no installer ran. If the only explanation is "blocked by policy," report it accurately without inventing an administrator restriction. Do not repeat an unchanged rejected command, bypass rejection through another tool or computer control, or disable protections. A running installer or sync needs monitoring, not a duplicate operation.
+5. Only if supported agent-side routes are unavailable or exhausted, show the smallest manual fallback below. Explain the observed blocker and preserve setup progress. If the issue is a mount or credential boundary rather than missing Windows tools, explain that installing them will not by itself repair that boundary.
+
+**Last resort: user-assisted Windows installation.** Tell the user which tools are missing and why they need this one-time step. Git saves versions; GitHub CLI connects the repositories; Node.js includes npm/npx for the helper and skills. Show only the missing tools' commands:
+
+1. Click **Start**, type **PowerShell**, and open **Windows PowerShell** on the Windows desktop where Company OS is being set up. In Windows Sandbox, open it inside that Sandbox window.
+2. Use **Copy** on a command below, click inside PowerShell, paste with **Ctrl+V** (or right-click), and press **Enter**. Run one command at a time and wait until it finishes. Follow license prompts and approve the expected Windows installer prompt if permitted. If unavailable administrator credentials are requested, stop and tell the agent.
+
+Git:
+
+~~~powershell
+winget install --id Git.Git --exact --source winget
+~~~
+
+GitHub CLI:
+
+~~~powershell
+winget install --id GitHub.cli --exact --source winget
+~~~
+
+Node.js LTS, including npm/npx:
+
+~~~powershell
+winget install --id OpenJS.NodeJS.LTS --exact --source winget
+~~~
+
+3. If **winget is not recognized**, use the matching official installer instead:
+   - [Git for Windows](https://git-scm.com/install/windows): download the Windows installer, open it from Downloads, and keep command-line/third-party access enabled.
+   - [GitHub CLI](https://cli.github.com/): choose Download for Windows, or use the matching Windows .msi from the [official latest release](https://github.com/cli/cli/releases/latest). Install GitHub CLI, not GitHub Desktop.
+   - [Node.js LTS](https://nodejs.org/en/download): choose Windows Installer (.msi) for your system, open it from Downloads, and keep npm and Add to PATH enabled. Extra native-module build tools are not required.
+   The agent identifies x64 versus ARM64 and supplies a verified matching asset link when available. Do not ask users to disable Windows protections. For another error, ask them to paste the error rather than rerun blindly.
+4. Close PowerShell and open a **new window** from Start so it picks up the updated PATH. A new tab may retain the old PATH. Check installed tools:
+
+~~~powershell
+git --version
+gh --version
+node --version
+npm.cmd --version
+npx.cmd --version
+~~~
+
+5. Return to the agent and say **"Tools installed. Continue setup."** The agent verifies versions in its own execution environment, refreshes PATH or guides an app restart only if needed, then resumes with saved files and answers. Do not restart onboarding, reinstall working tools, or recreate repositories. If a new conversation is necessary, include the actual existing brain path in the continuation instruction.
+
+Manual installation is assisted setup, not proof that automatic installation worked. GitHub sign-in remains a separate step with secure storage and a visible device code. A missing repository, blocked credential store, or Cowork mount is not fixed by repeating tool installation. If sync reports an active helper lock, monitor the existing operation and say "Still syncing"; never delete a live lock or start another publish alongside it.
+
+Windows command references: [Microsoft WinGet](https://learn.microsoft.com/en-us/windows/package-manager/winget/install), [GitHub CLI installation](https://github.com/cli/cli/blob/trunk/docs/install_windows.md). Use official OS-specific guidance for other platforms; do not paste Windows commands into a Linux VM or macOS terminal.

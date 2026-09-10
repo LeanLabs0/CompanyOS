@@ -13,6 +13,8 @@ The MVP targets ChatGPT and Claude. Any other agent with a suitable local shell 
 
 Shell access inside an isolated runtime does not prove access to machine-global skill folders or the user's persistent filesystem. Resolve host/mount paths.
 
+For missing tools, stale PATH, installation rejections, or a shell that cannot mount the brain, follow [setup troubleshooting](troubleshooting.md). The agent resolves supported installation steps first; manual instructions are the last resort for a concrete blocker, not the default flow.
+
 ## App-specific routes
 
 - ChatGPT desktop / Work Local / Codex: before setup, use Choose project to select a local project with the brain folder attached and primary. A project name or uploaded files alone do not establish local access. Guide the user to create/select Documents/CompanyOS if needed, then continue previous answers. Use supported user-level skills, then check the skill selector and a fresh task. Later, attach CompanyOS as an accessible secondary folder where needed. Secondary folder access alone does not auto-load its project instructions; explicitly load its entry point.
@@ -55,6 +57,8 @@ User-reported tests, not a universal app guarantee:
 | Full backup, company sync, restore | Unverified in this app test | Blocked pending secure auth |
 
 Selecting a folder did not by itself prove the authentication fix. The successful ChatGPT calls used a different supported execution context. Neither test establishes that users must open every future chat inside the brain. Closing and relaunching Windows Sandbox discards its local state; that is a fresh machine test, not authentication persistence on the same machine.
+
+A subsequent real-Windows test with prerequisites already installed completed personal backup and reviewed company publication; their remote revisions were independently checked. Automatic prerequisite installation in a clean Windows Sandbox remains blocked by a reported execution-policy rejection. Second-machine recovery remains unverified in these app tests. Do not conflate the successful configured-machine workflow with successful fresh installation.
 
 ## Optional global pointer
 

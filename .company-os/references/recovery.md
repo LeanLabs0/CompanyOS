@@ -2,6 +2,8 @@
 
 The user can provide their personal repository URL and approve GitHub sign-in. The agent handles the filesystem and Git. An organization is not required.
 
+Use [setup troubleshooting](troubleshooting.md) when tools, folder access, or installation permissions fail. Agent-led installation is the default. Provide the minimal manual prerequisite steps only after a concrete blocker remains unresolved, then resume recovery with the same destination and backup URL.
+
 1. Verify local persistent shell access. Check/install Git, GitHub CLI, Node 22+, and npm/npx. Authenticate through gh auth login --web using HTTPS, then gh auth setup-git. Always show the active CLI's actual one-time code in a code block and its clickable sign-in URL so the user can type it; clipboard copying is only a convenience. Never save the code in files. Repeat a valid code on request or restart an expired flow. Do not export credentials from the old machine.
 2. Inspect the supplied private personal repository and permissions. Clone it into an empty Documents/CompanyOS with --origin personal. Do not clone the starter first for a restore. Do not overwrite an existing brain.
 3. Read kit.json, AGENTS.md, .company-os/setup.json, sync-state.json, skills.json, and setup.md. If the clone has an older layout, migrate locally before enabling sharing.
