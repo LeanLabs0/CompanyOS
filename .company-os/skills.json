@@ -7,7 +7,13 @@
     "company-os-restore"
   ],
   "offered": [
-    "grill-me"
-  ],
-  "additional_optional_slots": 3
+    "grill-me",
+    "unslop",
+    "find-skills",
+    "copywriting",
+    "content-strategy",
+    "seo-audit",
+    "emails",
+    "social"
+  ]
 }

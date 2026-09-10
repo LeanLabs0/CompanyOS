@@ -3,6 +3,7 @@ import path from 'node:path';
 import os from 'node:os';
 import crypto from 'node:crypto';
 import { spawnSync } from 'node:child_process';
+import { companyDocuments, companyRootFile, knowledgeOnly, finalizeInstallation } from './repository-files.mjs';
 
 const MAX_FILE = 95 * 1024 * 1024;
 export const STARTER = 'https://github.com/LeanLabs0/CompanyOS.git';
@@ -57,8 +58,9 @@ export function validatePath(name, shared = false) {
       throw new Error('Unsafe or nonportable file path: ' + name);
     }
   }
-  if (shared && !/^(wiki|corrections)\//.test(name)) throw new Error('Company content outside wiki/ or corrections/: ' + name);
-  if (shared && name.split('/').some(part => /^(AGENTS(?:\.override)?\.md|CLAUDE\.md|GEMINI\.md|\.agents|\.claude|\.cursor|\.codex|\.gemini|\.github|\.gitattributes|\.gitignore|\.gitmodules|\.lfsconfig)$/i.test(part))) {
+  const companyRoot = shared === 'company' && companyRootFile(name);
+  if (shared && !companyRoot && !/^(wiki|corrections)\//.test(name)) throw new Error('Company content outside wiki/ or corrections/ and the two company root documents: ' + name);
+  if (shared && !companyRoot && name.split('/').some(part => /^(AGENTS(?:\.override)?\.md|CLAUDE\.md|GEMINI\.md|\.agents|\.claude|\.cursor|\.codex|\.gemini|\.github|\.gitattributes|\.gitignore|\.gitmodules|\.lfsconfig)$/i.test(part))) {
     throw new Error('Company content cannot install host instructions automatically: ' + name);
   }
 }
@@ -222,7 +224,8 @@ export class CompanyOS {
       fs.chmodSync(path.join(expectedHooks, 'pre-push'), 0o755);
       this.git(['config', '--local', 'protocol.company-os-disabled.allow', 'never']);
       atomicJson(this.setupFile, next);
-      return { configured: next, message: 'Remote protections installed. No files were uploaded.' };
+      const files = next.personal || next.company ? finalizeInstallation(this, previous, next) : null;
+      return { configured: next, files, message: 'Remote protections installed. No files were uploaded.' };
     });
   }
 
@@ -256,7 +259,7 @@ export class CompanyOS {
     validateSnapshot(result, true);
     return result;
   }
-  tree(cwd, commit, shared = true) {
+  tree(cwd, commit, shared = 'company') {
     if (!commit) return {};
     if (!/^[0-9a-f]{40,64}$/.test(commit)) throw new Error('Invalid recorded Git revision.');
     const entries = this.git(['ls-tree', '-r', '-z', commit], cwd).stdout.split('\0').filter(Boolean);
@@ -305,7 +308,7 @@ export class CompanyOS {
       this.git(['fetch', '--no-tags', 'company', ref], directory);
       head = this.git(['rev-parse', 'FETCH_HEAD'], directory).stdout.trim();
       // Validate all reachable company history, not only its latest tree.
-      for (const commit of this.git(['rev-list', head], directory).stdout.trim().split('\n')) this.tree(directory, commit, true);
+      for (const commit of this.git(['rev-list', head], directory).stdout.trim().split('\n')) this.tree(directory, commit, 'company');
       this.git(['checkout', '-B', setup.companyBranch, head], directory);
     }
     return { directory, head, snapshot: this.tree(directory, head), setup };
@@ -361,6 +364,7 @@ export class CompanyOS {
     return { snapshot: result, conflicts: [...new Set(conflicts)].sort() };
   }
   writeShared(name, data) {
+    validatePath(name, true);
     const file = this.safeFile(name);
     if (data === undefined) {
       if (exists(file)) fs.unlinkSync(file);
@@ -423,26 +427,32 @@ export class CompanyOS {
         }
         const base = !state.company && workspace.head
           ? this.json(path.join(this.control, 'seed-shared.json'), {})
-          : this.tree(workspace.directory, state.head);
-        const merged = this.merge(base, local, workspace.snapshot);
+          : knowledgeOnly(this.tree(workspace.directory, state.head));
+        const merged = this.merge(base, local, knowledgeOnly(workspace.snapshot));
         if (merged.conflicts.length) {
           if (exists(this.pendingFile)) fs.unlinkSync(this.pendingFile);
           atomicJson(path.join(this.scratch, 'conflicts.json'), { base, local, remote: workspace.snapshot, paths: merged.conflicts, remoteHead: workspace.head });
           return { status: 'conflict', paths: merged.conflicts, message: 'No shared files were overwritten and nothing was published. Ask which content is correct, edit those files, then prepare again.' };
         }
         this.applyImport(local, merged.snapshot, { schema: 1, company: workspace.setup.company.identity, head: workspace.head });
+        // Root company instructions never enter the personal working tree or merge journal.
+        // Preserve existing team documents; generate missing ones from company identity alone.
+        const exported = { ...merged.snapshot };
+        for (const [name, body] of Object.entries(companyDocuments(workspace.setup.company.identity))) {
+          exported[name] = workspace.snapshot[name] ?? encode(body);
+        }
         const changes = [];
-        for (const name of [...new Set([...Object.keys(workspace.snapshot), ...Object.keys(merged.snapshot)])].sort()) {
-          if (equal(workspace.snapshot[name], merged.snapshot[name])) continue;
-          changes.push({ path: name, action: workspace.snapshot[name] === undefined ? 'add' : merged.snapshot[name] === undefined ? 'delete' : 'edit',
-            before: workspace.snapshot[name] ?? null, after: merged.snapshot[name] ?? null });
+        for (const name of [...new Set([...Object.keys(workspace.snapshot), ...Object.keys(exported)])].sort()) {
+          if (equal(workspace.snapshot[name], exported[name])) continue;
+          changes.push({ path: name, action: workspace.snapshot[name] === undefined ? 'add' : exported[name] === undefined ? 'delete' : 'edit',
+            before: workspace.snapshot[name] ?? null, after: exported[name] ?? null });
         }
         if (!changes.length) {
           if (exists(this.pendingFile)) fs.unlinkSync(this.pendingFile);
           return { status: 'current', imported: digest(local) !== digest(merged.snapshot), destination: workspace.setup.company.identity };
         }
         const pending = { schema: 1, company: workspace.setup.company.identity, branch: workspace.setup.companyBranch,
-          remoteHead: workspace.head, snapshot: merged.snapshot, localDigest: digest(merged.snapshot), changes };
+          remoteHead: workspace.head, snapshot: exported, localDigest: digest(merged.snapshot), changes };
         pending.id = hash(JSON.stringify(pending));
         atomicJson(this.pendingFile, pending);
         this.writeReview(pending);
@@ -454,7 +464,7 @@ export class CompanyOS {
   }
   writeReview(pending) {
     const lines = ['# Company sharing review', '', 'Destination: ' + pending.company, 'Branch: ' + pending.branch,
-      'Batch: ' + pending.id, '', 'Only wiki/ and corrections/ will be published. Skill sources are not installed by syncing.', ''];
+      'Batch: ' + pending.id, '', 'Only wiki/, corrections/, and company-only README.md/AGENTS.md are eligible. Personal root documents are never copied. Skill sources are not installed by syncing.', ''];
     for (const change of pending.changes) {
       lines.push('## ' + change.action + ': ' + change.path, '');
       for (const side of ['before', 'after']) {
@@ -480,7 +490,7 @@ export class CompanyOS {
       const workspace = this.companyWorkspace();
       try {
         if (workspace.head !== pending.remoteHead) throw new Error('Company changed after review. Prepare a new review; nothing was pushed.');
-        validateSnapshot(pending.snapshot, true);
+        validateSnapshot(pending.snapshot, 'company');
         for (const name of new Set([...Object.keys(workspace.snapshot), ...Object.keys(pending.snapshot)])) {
           const file = path.join(workspace.directory, name);
           if (pending.snapshot[name] === undefined) { if (exists(file)) fs.unlinkSync(file); }
@@ -499,7 +509,7 @@ export class CompanyOS {
           if (exists(file) && fs.statSync(file).isDirectory()) fs.rmdirSync(file);
           fs.writeFileSync(file, Buffer.from(data, 'base64'));
         }
-        this.git(['add', '--all', '--', 'wiki', 'corrections'].filter((arg, index) => index < 3 || exists(path.join(workspace.directory, arg)) || Object.keys(workspace.snapshot).some(n => n.startsWith(arg + '/'))), workspace.directory);
+        this.git(['add', '--all', '--', 'wiki', 'corrections', 'README.md', 'AGENTS.md'].filter((arg, index) => index < 3 || exists(path.join(workspace.directory, arg)) || Object.keys(workspace.snapshot).some(n => n === arg || n.startsWith(arg + '/'))), workspace.directory);
         this.git(['commit', '-m', 'Company OS: publish reviewed company knowledge'], workspace.directory);
         const head = this.git(['rev-parse', 'HEAD'], workspace.directory).stdout.trim();
         if (digest(this.tree(workspace.directory, head)) !== digest(pending.snapshot)) throw new Error('Export differs from the approved files.');

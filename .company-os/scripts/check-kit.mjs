@@ -1,17 +1,34 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { CompanyOS } from './lib.mjs';
+import { CompanyOS, run } from './lib.mjs';
+import { STARTER_ONLY, templateHash } from './repository-files.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const errors = [];
 const read = name => fs.readFileSync(path.join(root, name), 'utf8').replace(/\r\n/g, '\n');
 const kit = JSON.parse(read('kit.json'));
+if (process.argv.includes('--refresh-cleanup')) {
+  const fingerprints = (name, known = []) => {
+    const previous = run('git', ['show', 'HEAD:' + name], root, { allowFailure: true });
+    return [...new Set([templateHash(Buffer.from(read(name))),
+      ...(previous.status === 0 ? [templateHash(Buffer.from(previous.stdout))] : []),
+      ...(Array.isArray(known) ? known : [known]).filter(Boolean)])];
+  };
+  kit.install_cleanup = Object.fromEntries(STARTER_ONLY.map(name => [name, fingerprints(name, kit.install_cleanup?.[name])]));
+  kit.starter_readme_sha256 = fingerprints('README.md', kit.starter_readme_sha256);
+  fs.writeFileSync(path.join(root, 'kit.json'), JSON.stringify(kit, null, 2) + '\n');
+}
+for (const name of STARTER_ONLY) {
+  if (!kit.install_cleanup?.[name]?.includes(templateHash(Buffer.from(read(name))))) errors.push('Stale install cleanup fingerprint: ' + name + '. Run check-kit.mjs --refresh-cleanup.');
+}
+if (!kit.starter_readme_sha256?.includes(templateHash(Buffer.from(read('README.md'))))) errors.push('Stale starter README fingerprint.');
+if (JSON.stringify(Object.keys(kit.install_cleanup || {}).sort()) !== JSON.stringify([...STARTER_ONLY].sort())) errors.push('Unexpected starter cleanup paths.');
 if (kit.name !== 'Company OS' || kit.setup_schema !== 3 || !kit.requires_git || !kit.requires_scripts) errors.push('Kit metadata does not describe the current product contract.');
 if (!kit.requires_github_cli || !kit.requires_npm || !kit.requires_core_skills) errors.push('GitHub CLI, npm, and core skills must be required.');
 if (JSON.parse(read('package.json')).version !== kit.version) errors.push('Package and kit release versions differ.');
 const skillManifest = JSON.parse(read('.company-os/skills.json'));
-if (JSON.stringify(skillManifest.core) !== JSON.stringify(['company-os', 'company-os-sync', 'company-os-restore']) || JSON.stringify(skillManifest.offered) !== JSON.stringify(['grill-me'])) errors.push('Core skills are required; GrillMe is the only current optional offering.');
+if (JSON.stringify(skillManifest.core) !== JSON.stringify(['company-os', 'company-os-sync', 'company-os-restore']) || JSON.stringify(skillManifest.offered) !== JSON.stringify(['grill-me', 'unslop', 'find-skills', 'copywriting', 'content-strategy', 'seo-audit', 'emails', 'social'])) errors.push('Core skills and the reviewed optional shortlist must match the install contract.');
 const expected = ['company-os', 'company-os-sync', 'company-os-restore', 'grill-me'];
 const skillDirectories = fs.readdirSync(path.join(root, '.agents', 'skills')).sort();
 if (JSON.stringify(skillDirectories) !== JSON.stringify([...expected].sort())) errors.push('The release must contain exactly the four current skill packages.');

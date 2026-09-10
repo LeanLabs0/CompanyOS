@@ -1,6 +1,8 @@
 # Company sync contract
 
-One durable brain folder has personal and company remotes. Personal contains the whole intended brain; company contains only wiki/ and corrections/. Git ignore rules exclude secrets and disposable work from personal backup. They are not a per-remote sharing filter.
+One durable brain folder has personal and company remotes. Personal contains the intended working brain; company contains wiki/, corrections/, and company-only root README.md and AGENTS.md. Git ignore rules exclude secrets and disposable work from personal backup. They are not a per-remote sharing filter.
+
+The two company root documents are generated when absent, included in the exact publication review, and preserved when already present. They use only the company identity and never copy personal documents or destinations. Only wiki/ and corrections/ enter the local three-way merge or recovery journal. Company root instructions never replace personal root instructions. Clients older than 0.4.0 reject these extra files; update all syncing clients before publishing the new format. Existing wiki/corrections-only history remains supported.
 
 The Node helper has no npm dependencies. It uses Git and, for live GitHub validation, the authenticated gh CLI.
 

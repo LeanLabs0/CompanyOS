@@ -1,6 +1,6 @@
 {
   "name": "Company OS",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "setup_schema": 3,
   "source": "https://github.com/LeanLabs0/CompanyOS",
   "handoff": "https://www.leanlabs.com/brain.md",
@@ -14,9 +14,60 @@
     "wiki/",
     "corrections/"
   ],
+  "company_only_documents": [
+    "README.md",
+    "AGENTS.md"
+  ],
   "remote_names": [
     "personal",
     "company"
   ],
-  "company_publication": "reviewed-batch"
+  "company_publication": "reviewed-batch",
+  "install_cleanup": {
+    "package.json": [
+      "b8d06f9d8d4baceb8f09458b8fb1554d1b9b2a2aebccf0021424eecdc641ccfd",
+      "084061fe2ebcbe1585f4f400c18770e78aa555097e74fbb09608c8f852426834"
+    ],
+    "tests/sync.test.mjs": [
+      "1f4045981f9cd7b629ab0a072dc1a59af5499ba5dc04d83ec90c23b32879c77a",
+      "c90083e15a531d964761a16497d306bdb7798f4a53663faf7a31bd3ad5822d5b",
+      "05e56529ff5d2a6849320829a53738cfe2224882629054e2069d9100426c897f"
+    ],
+    ".company-os/scripts/check-kit.mjs": [
+      "6e015b139c2e07c0101cbcfb9c633bdc611e3db611624a9451843af68a30da13",
+      "e07b7e2f2c6a4fca6a068fc23a8c0d40e364d161915fead0a54eba0e78cd1d55",
+      "57e8c4f2630182ce7c5c4045402457fdef3f5983b722cc13a9f272d2a83bcbfd"
+    ],
+    ".company-os/scripts/check-release.mjs": [
+      "a50dd3f8be2862ab08d6aa2382bff5c96a4f9a2a44e359f1e51b1610b502079b",
+      "597aba5388978fbfcde0a823b22cf0f0661c2b33a963b6399925bea6452530c7"
+    ],
+    ".company-os/references/maintainer-testing.md": [
+      "7ee07ae19a358cc8f9e65cedce0913675035980be226c5cad266ca30b78db5f1",
+      "35a57d98300508f34704dc3ef78ab2c32e94d80b9bb19f1e1d99a9416b8bdfe2",
+      "1805dd0c6d8c19c2d402ea3223153f08cd38f262a44d91ed93d2483bdcc0b863"
+    ],
+    ".company-os/references/verification-2026-09-09.md": [
+      "45f38216e510de18a6763af0aa9d1d2d17d6f3aa12eb74086b5acc02865fe89d",
+      "c44e8c2679de250b6730c9bc5a22fb93b300cc1718d61927590719b220935031",
+      "4a763ebd4985dfabaf7f230bf43594d00cc98d57c4df31176e37a5c790741c22"
+    ],
+    ".company-os/release/brain.md": [
+      "3871a20b9c3f9b618cfa2cd1fbc330469c6905eeb74f1f7c1bcd86e6b9392fc1",
+      "3a6e1852b1ceb7bbd0f2504655ff39f3b834ddd6620f84d947e30eb155e41ff8",
+      "b8db95dedfec546a27649f6f9781d639517e329b84cd19eb7da2230d76e4e508",
+      "497b979e004e7fa57325b515fb86f76fccc9698ebea43b2f82d263886237820f"
+    ],
+    "personal/research/README.md": [
+      "2195252392d467c5576735c2aa63ae1a638ccb5c2555d129e6ba7002ce5b8501"
+    ],
+    "personal/projects/README.md": [
+      "cbcea2e516df1ce163f21fa106f524b61c9a1b3beb9a2445befe68be44b29a17"
+    ]
+  },
+  "starter_readme_sha256": [
+    "f2b02294114e0b8df938f1920787ccd230f83873439cd0ee09048fc06a4950ef",
+    "e6d0cb8f2b3d9b377e359b24b7ebdda22b1884cc99b877279c59938df25da880",
+    "9d612e73c3019446920cf5a53d5d379b45750bdc18f8d6d0f89f9ecd0f32fe79"
+  ]
 }

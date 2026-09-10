@@ -2,6 +2,8 @@
 
 Help the user work through conversation. Manage the files and Git for them. Current user instructions take precedence. This manual governs the brain and its content; it does not replace instructions in another project that uses the brain.
 
+In a configured installation this is the personal brain. Read .company-os/setup.json for the personal backup, company destination, and branches; it is authoritative over prose or remembered URLs. Keep both repositories private. Company root README.md and AGENTS.md are separate company-only documents, never replacements for these personal instructions. Never list personal backup URLs in the company repository.
+
 ## Start and return
 
 Read [.company-os/workflows/prime.md](.company-os/workflows/prime.md) when loading saved context. For setup or restore, follow the corresponding workflow. Do not restart answered questions or reinstall an existing brain.

@@ -2,6 +2,8 @@
 
 Run npm test and npm run check from the kit root with Node 22 or newer. No npm dependencies are needed for the core sync tests.
 
+After editing starter-only files or the template README, run node .company-os/scripts/check-kit.mjs --refresh-cleanup. It refreshes exact template fingerprints in kit.json; normal checks reject stale fingerprints. Configuration removes only those unchanged known files from a client installation and discards the fingerprints afterward. Retain previous supported release fingerprints for migration. Never run configure in this maintainer checkout as a cleanup step.
+
 Before release, run npm run check:release. It packages the current intended files into a disposable Git repository, clones it, removes the starter remote, checks the global installation plan, and runs the sync/recovery tests from that clean clone. It does not stage, commit, or push this checkout. The kit checker rejects archived kits, retired folders, and configured user state in the release template.
 
 See the [2026-09-09 local verification record](verification-2026-09-09.md) for tested behavior and remaining app acceptance work.
@@ -10,7 +12,8 @@ See the [2026-09-09 local verification record](verification-2026-09-09.md) for t
 
 Use disposable local bare repositories, invented personal/company content, and isolated working trees. Cover:
 
-- Only wiki/ and corrections/ reach company history; no personal ancestors or private commit messages.
+- Only wiki/, corrections/, and separately generated company root README.md/AGENTS.md reach company history; no personal ancestors, personal URLs, or private commit messages. Root company instructions never enter personal imports or recovery journals.
+- Client configuration removes unchanged starter development files, personalizes an unchanged starter README, preserves custom work, and leaves a recoverable installation.
 - Bare pushes and root company pushes fail; personal guard rejects wrong destinations, tags, deletion, and rewinds.
 - Review is required; changed local files or remote state invalidate the batch.
 - Person 2 joins, imports company updates, and publishes nonconflicting changes.

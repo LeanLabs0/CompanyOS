@@ -9,7 +9,7 @@ Resolve the brain from an explicit path or the user-home .company-os/brain.json 
 
 Read that brain's AGENTS.md and .company-os/workflows/sync.md. Run the absolute .company-os/scripts/company-os.mjs helper.
 
-Run sync to back up personal work and prepare company changes. Read the returned review and summarize the exact company repository, additions, edits, deletions, and any skill-source changes. The personal repository gets the full intended brain; company gets only wiki/ and corrections/ through the isolated helper.
+Run sync to back up personal work and prepare company changes. Read the returned review and summarize the exact company repository, additions, edits, deletions, and any skill-source changes. The personal repository gets the intended working brain; company gets wiki/, corrections/, and separately generated company-only root README.md and AGENTS.md through the isolated helper. Those root documents never overwrite personal instructions or include personal backup destinations.
 
 Publish only after the user approves the exact presented batch, using publish --review with its ID. A "sync" request or scheduled run is not approval of unseen content. If local files or company state changed, prepare a fresh review. Never bypass the helper using a direct company push.
 

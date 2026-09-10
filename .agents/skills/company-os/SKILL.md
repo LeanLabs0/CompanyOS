@@ -13,10 +13,12 @@ Read the resolved brain's AGENTS.md and .company-os/workflows/prime.md, then con
 
 For a fresh install with no brain files, read https://www.leanlabs.com/brain.md. Verify the live handoff's setup schema matches the intended kit; do not invent a missing starter or overwrite existing work.
 
-During setup, automatically install missing Git, GitHub CLI, Node/npm/npx, and all three required core skills through the global npx skills add flow. Create private personal/company repositories unless existing URLs were supplied. Do not offer these requirements as optional or stop at an installation preview. Ask only about optional GrillMe; the user handles unavoidable OS/app approvals and GitHub sign-in. Report actual blockers and incomplete setup honestly. Company publication still requires its exact content review.
+During setup, automatically install missing Git, GitHub CLI, Node/npm/npx, and all three required core skills through the global npx skills add flow. Create private personal/company repositories unless existing URLs were supplied. Do not offer these requirements as optional or stop at an installation preview. The user handles unavoidable OS/app approvals and GitHub sign-in. After initial repository sync and the return/verification steps, show every optional recommendation and its short summary from .company-os/references/skills.md as the final onboarding choice. Install only the optional skills selected, through the same global CLI flow. Report actual blockers and incomplete setup honestly. Company publication still requires its exact content review.
 
 Apply only context relevant to the task's named company. Keep the current project's own instructions, working directory, and deliverable location. Brain Git commands must use the absolute helper path; never push the current project by accident.
 
 Do not claim a pointer, skill listing, or remembered conversation proves recall. Read the saved files and cite them. For cross-project verification, retrieve one priority and a preference or identity fact in a fresh conversation.
 
 Selected personal backup is automatic. Shared changes are prepared for review; company publication requires approval of the exact current batch. Read-only instructions take precedence over routine sync.
+
+For optional skill recommendations, use the saved role, priorities, active projects, and relevant company context. Follow .company-os/references/skills.md to search with generic task terms, inspect candidates, and explain their fit. Do not send private brain content to a skill directory, duplicate company profiles, or install recommendations without the user's selection.

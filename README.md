@@ -14,7 +14,7 @@ Already have this kit open? Say:
 
 > Read AGENTS.md and help me set up Company OS.
 
-Setup asks about your current work, then automatically creates private personal and company repositories and installs the core Company OS skills. Supply existing repository URLs if you already have them: the agent restores your personal brain or joins your company. The optional choices are GrillMe and a review schedule.
+Setup asks about your current work, then automatically creates private personal and company repositories and installs the core Company OS skills. Supply existing repository URLs if you already have them: the agent restores your personal brain or joins your company. A review schedule is optional. After repository sync, setup ends with a short skill menu: GrillMe, Unslop, Find Skills, and marketing tools for copy, content planning, SEO, email, and social. Your saved role and priorities guide additional suggestions; the agent installs only your selections globally.
 
 ## One folder, two destinations
 
@@ -26,7 +26,9 @@ Setup asks about your current work, then automatically creates private personal 
 
 Everything in wiki/ and corrections/ is company-shareable. Private interviews and client research belong in personal/ until deliberately prepared for sharing.
 
-Your private backup contains the complete brain, including unpublished company edits. The separate company repository contains only wiki and correction content, with its own history. Both repositories can belong to an individual's GitHub account; an organization is optional.
+Your private backup contains the working brain, including unpublished company edits. The company repository contains wiki and correction content plus its own short README and agent instructions, with separate history. Setup recommends the company's GitHub organization for shared knowledge and keeps personal backup under your individual account. Individually owned company repositories are supported too.
+
+This is the starter repository. During configuration, an installed copy gets a short personal README naming its own destinations. Unchanged tests, package metadata, release/checking tools, maintainer notes, and empty-folder READMEs are removed. Runtime tools and essential recovery state remain; client edits are preserved.
 
 Personal backup is enabled during setup and runs automatically. Company changes are prepared automatically and shown for review before publication. Conflicts stop for a plain-language decision.
 

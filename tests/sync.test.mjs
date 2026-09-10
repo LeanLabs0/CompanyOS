@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
 import { CompanyOS, run, atomicJson, encode, digest, repoIdentity } from '../.company-os/scripts/lib.mjs';
+import { companyDocuments, personalReadme, templateHash } from '../.company-os/scripts/repository-files.mjs';
 
 const git = (cwd, ...args) => run('git', args, cwd).stdout.trim();
 function put(root, name, text) {
@@ -28,6 +29,7 @@ function fixture(t) {
     git(root, 'config', 'user.name', 'Test Person');
     git(root, 'config', 'user.email', 'test@example.invalid');
     put(root, '.gitignore', '.company-sync/\n.env\nnode_modules/\n');
+    put(root, '.gitattributes', '*.md text eol=lf\n*.json text eol=lf\n*.mjs text eol=lf\n');
     // Tests use local bare repositories. Production's hook intentionally rejects local URLs.
     // backup() always calls the identical guard directly with test-injected URL validation.
     put(root, '.company-os/scripts/hooks/pre-push', '#!/bin/sh\nexit 0\n');
@@ -55,10 +57,90 @@ test('company export contains only allowed content and no private ancestry or me
   put(one.root, 'personal/research/customer.md', 'PRIVATE customer notes');
   publish(one);
   const names = git(company, 'ls-tree', '-r', '--name-only', 'main').split('\n');
-  assert.ok(names.every(name => /^(wiki|corrections)\//.test(name)));
+  assert.ok(names.every(name => /^(wiki|corrections)\//.test(name) || ['README.md', 'AGENTS.md'].includes(name)));
+  assert.ok(names.includes('README.md') && names.includes('AGENTS.md'));
   assert.equal(git(company, 'rev-list', '--count', 'main'), '1');
   assert.ok(!git(company, 'log', '--format=%B', 'main').includes('PRIVATE'));
   assert.equal(one.prepare().status, 'current');
+});
+
+test('company root documents are reviewed, preserved remotely, and never imported into personal instructions', t => {
+  const { one, create, company, temp, personal } = fixture(t);
+  put(one.root, 'AGENTS.md', 'PRIVATE personal agent instructions');
+  put(one.root, 'README.md', 'PRIVATE personal README with ' + personal);
+  const review = one.prepare();
+  assert.ok(review.changes.some(c => c.path === 'AGENTS.md' && c.action === 'add'));
+  assert.ok(review.changes.some(c => c.path === 'README.md' && c.action === 'add'));
+  one.publish(review.id);
+  for (const name of ['README.md', 'AGENTS.md']) {
+    const body = git(company, 'show', 'main:' + name);
+    assert.ok(!body.includes(personal) && !body.includes('PRIVATE'));
+    assert.equal(body, companyDocuments(one.setup().company.identity)[name].trim());
+  }
+  const editor = path.join(temp, 'team-editor');
+  git(temp, 'clone', company, editor);
+  git(editor, 'config', 'user.name', 'Team');
+  git(editor, 'config', 'user.email', 'team@example.invalid');
+  put(editor, 'AGENTS.md', 'Team instructions with a custom rule\n');
+  git(editor, 'add', '.'); git(editor, 'commit', '-m', 'Company rule');
+  git(editor, 'push', 'origin', 'HEAD:main');
+  assert.equal(one.prepare().status, 'current');
+  assert.equal(fs.readFileSync(path.join(one.root, 'AGENTS.md'), 'utf8'), 'PRIVATE personal agent instructions');
+  assert.equal(fs.readFileSync(path.join(one.root, 'README.md'), 'utf8'), 'PRIVATE personal README with ' + personal);
+  const two = create('two');
+  put(two.root, 'AGENTS.md', 'Second teammate personal rules');
+  two.prepare();
+  put(two.root, 'wiki/new.md', 'New shared fact');
+  publish(two);
+  assert.equal(git(company, 'show', 'main:AGENTS.md'), 'Team instructions with a custom rule');
+  assert.equal(fs.readFileSync(path.join(two.root, 'AGENTS.md'), 'utf8'), 'Second teammate personal rules');
+  assert.throws(() => one.writeShared('AGENTS.md', encode('overwrite')), /outside wiki/);
+  atomicJson(one.journalFile, { before: {}, after: { 'README.md': encode('overwrite') }, state: one.state() });
+  assert.throws(() => one.recover(), /outside wiki/);
+});
+
+test('configuration trims unchanged starter material, preserves custom files, and remains recoverable', t => {
+  const { one, personal, company, temp } = fixture(t);
+  const originalSetup = one.setup();
+  put(one.root, 'README.md', 'Starter promotion\r\n');
+  put(one.root, 'package.json', '{"scripts":{"test":"development only"}}\r\n');
+  put(one.root, 'tests/sync.test.mjs', 'Customized client work');
+  put(one.root, '.company-os/release/brain.md', 'Starter handoff\n');
+  put(one.root, 'personal/research/README.md', 'Personal research project, customized');
+  put(one.root, 'personal/research/interview.md', 'Private interview');
+  atomicJson(path.join(one.root, 'kit.json'), {
+    name: 'Company OS', version: '0.4.0', setup_schema: 3,
+    starter_readme_sha256: templateHash(Buffer.from('Starter promotion\n')),
+    install_cleanup: {
+      'package.json': templateHash(Buffer.from('{"scripts":{"test":"development only"}}\n')),
+      'tests/sync.test.mjs': templateHash(Buffer.from('Original starter test')),
+      '.company-os/release/brain.md': templateHash(Buffer.from('Starter handoff\n')),
+      'personal/research/README.md': templateHash(Buffer.from('Original placeholder')),
+      'personal/research/interview.md': templateHash(Buffer.from('Private interview')),
+    },
+  });
+  const result = one.configure({});
+  assert.deepEqual(result.files.removed.sort(), ['.company-os/release/brain.md', 'package.json']);
+  assert.ok(result.files.preserved.includes('tests/sync.test.mjs'));
+  assert.ok(result.files.preserved.includes('personal/research/README.md'));
+  assert.ok(fs.existsSync(path.join(one.root, 'personal/research/interview.md')));
+  assert.ok(!fs.existsSync(path.join(one.root, '.company-os/release')));
+  assert.equal(fs.readFileSync(path.join(one.root, 'README.md'), 'utf8'), personalReadme(originalSetup));
+  assert.ok(fs.readFileSync(path.join(one.root, 'README.md'), 'utf8').includes(personal));
+  assert.ok(fs.readFileSync(path.join(one.root, 'README.md'), 'utf8').includes(company));
+  assert.equal(one.json(path.join(one.root, 'kit.json')).install_cleanup, undefined);
+  for (const name of ['setup.json', 'seed-shared.json']) assert.ok(fs.existsSync(path.join(one.control, name)));
+  put(one.root, 'README.md', 'User customized personal instructions');
+  assert.equal(one.configure({}).files.readme, 'preserved');
+  publish(one);
+  one.backup();
+  const restored = path.join(temp, 'clean-restored');
+  git(temp, 'clone', '--origin', 'personal', personal, restored);
+  const brain = new CompanyOS(restored, { allowLocal: true });
+  brain.configure({});
+  assert.equal(brain.prepare().status, 'current');
+  assert.equal(fs.readFileSync(path.join(restored, 'README.md'), 'utf8'), 'User customized personal instructions');
+  assert.ok(!fs.existsSync(path.join(restored, 'package.json')));
 });
 
 test('plain pushes and root company pushes fail; guard rejects URLs, tags, and rewinds', t => {
