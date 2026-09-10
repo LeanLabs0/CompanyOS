@@ -13,7 +13,7 @@ Inspect the private repository and access, then clone it into the empty destinat
 
 Read the restored kit.json and AGENTS.md, then follow .company-os/references/recovery.md. For an older kit, preserve files and follow its reviewed migration route.
 
-Rebuild machine-local Git configuration, push guards, and the brain locator. Reinstall selected skills from the recorded sources using Vercel's global skills flow. Credentials and installed machine configuration are not recovered by cloning.
+Rebuild machine-local Git configuration, push guards, and the brain locator. Automatically reinstall all three required Company OS core skills, plus previously selected optional skills from their recorded sources, using Vercel's global npx skills add flow. Do not treat core installation as an optional choice or stop at a preview. Credentials and installed machine configuration are not recovered by cloning.
 
 Reconcile the saved company baseline, restored wiki edits, and current company repository. Never overwrite current team knowledge with a restored snapshot. Preserve conflicts for a user decision.
 

@@ -8,13 +8,13 @@ In ChatGPT Work, Claude, or another agent with local shell and persistent folder
 
 > Set up Company OS using https://www.leanlabs.com/brain.md
 
-The agent checks or installs Git, GitHub CLI, and Node/npm as needed. You handle account sign-in, browser approval, and folder permissions. It clones the starter into Documents/CompanyOS and removes the starter remote before saving your information.
+The agent installs any missing requirements: Git, GitHub CLI, Node, and npm/npx. You handle account sign-in, browser approval, and folder permissions. It clones the starter into Documents/CompanyOS and removes the starter remote before saving your information.
 
 Already have this kit open? Say:
 
 > Read AGENTS.md and help me set up Company OS.
 
-Setup asks about your current work, personal backup, company knowledge, and useful skills. For both repositories you can create one, paste an existing URL, or skip. An existing personal brain is restored, not overwritten by a new starter.
+Setup asks about your current work, then automatically creates private personal and company repositories and installs the core Company OS skills. Supply existing repository URLs if you already have them: the agent restores your personal brain or joins your company. The optional choices are GrillMe and a review schedule.
 
 ## One folder, two destinations
 
@@ -28,7 +28,7 @@ Everything in wiki/ and corrections/ is company-shareable. Private interviews an
 
 Your private backup contains the complete brain, including unpublished company edits. The separate company repository contains only wiki and correction content, with its own history. Both repositories can belong to an individual's GitHub account; an organization is optional.
 
-The agent backs up personal work automatically after you enable backup. Company changes are prepared automatically and shown for review before publication. Conflicts stop for a plain-language decision.
+Personal backup is enabled during setup and runs automatically. Company changes are prepared automatically and shown for review before publication. Conflicts stop for a plain-language decision.
 
 ## Work from another project
 

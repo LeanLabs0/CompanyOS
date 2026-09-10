@@ -29,7 +29,7 @@ Tests inject local repository URLs through the library only. The production CLI 
 With invented data, record app/version, OS, mode, kit version, date, and observed results:
 
 1. A person who can create an account and approve browser login completes setup without opening files or a terminal.
-2. Create / join / skip choices resume correctly after interruption.
+2. Required tools and core skills install automatically; private repositories are created by default, supplied URLs restore/join instead, and interrupted setup resumes without duplicates. Optional GrillMe can be declined without skipping core installation.
 3. Global skills install through the CLI, appear in the actual host, and load context from a fresh conversation in another project.
 4. Cowork's account-level adapter is tested separately from Claude Code's global skill discovery.
 5. A scheduled run reads the actual local brain, backs up personal work, and leaves company publication pending.
@@ -42,7 +42,7 @@ With invented data, record app/version, OS, mode, kit version, date, and observe
 The live handoff belongs to LeanLabs0/leanlabs-worker at content/brain.md. The reviewed replacement is staged at [.company-os/release/brain.md](../release/brain.md) in this kit. Do not treat the old Documents/unbound-web copy as another publishing source.
 
 1. Review local changes and complete the tests and relevant app acceptance checks.
-2. With publishing authorization, release kit 0.3.0/schema 3 to LeanLabs0/CompanyOS.
+2. With publishing authorization, release the current kit.json version/schema to LeanLabs0/CompanyOS.
 3. Clone the actual published starter into a disposable location and verify the release contract.
 4. With publishing authorization, update leanlabs-worker/content/brain.md from the staged handoff and deploy using that repository's instructions.
 5. Fetch the public handoff and run a clean installation against the actual published URLs.

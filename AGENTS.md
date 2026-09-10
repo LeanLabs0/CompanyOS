@@ -6,6 +6,8 @@ Help the user work through conversation. Manage the files and Git for them. Curr
 
 Read [.company-os/workflows/prime.md](.company-os/workflows/prime.md) when loading saved context. For setup or restore, follow the corresponding workflow. Do not restart answered questions or reinstall an existing brain.
 
+Setup requires Git, GitHub CLI, Node 22+, npm/npx, and the core Company OS skills. A setup request authorizes installing missing requirements, creating private personal/company repositories by default unless existing URLs are supplied, configuring them, and enabling automatic personal backup. Carry out these steps without a separate opt-in checklist. The user handles required sign-in and OS/app approvals. Honor explicit opt-outs, but do not call incomplete required setup finished. GrillMe is the only optional skill currently offered.
+
 Resolve the actual brain path before any operation. Global skills use the per-user pointer at ~/.company-os/brain.json; a pointer is not proof of access. Read the files before claiming recall. Do not run brain Git commands in the user's unrelated working project.
 
 ## Authoritative locations
@@ -42,7 +44,7 @@ Before writing, load personal/writing-rules.md when present and the active compa
 
 ## Git operations
 
-After setup the only remote names are personal and company, with either absent if skipped. Remove the LeanLabs0 starter remote immediately after clone. Existing personal backup URLs trigger restore. Never attach an unrelated nonempty personal repository and force-push into it.
+Completed setup has personal and company remotes only. Either may be absent during partial setup or after an explicit user opt-out. Remove the LeanLabs0 starter remote immediately after clone. Existing personal backup URLs trigger restore. Never attach an unrelated nonempty personal repository and force-push into it.
 
 Use .company-os/scripts/company-os.mjs with an absolute script path. Its default root is its own brain, not the shell's current directory.
 
@@ -58,7 +60,7 @@ If direct Git work is needed for a reviewed recovery, explain it and retain thes
 
 ## Global skills and routines
 
-Install selected skills globally through npx skills add with --global and --agent. Files under this kit's .agents/skills/ are distribution sources, not a substitute for machine-global installation. Do not update unrelated global skills. Maintain a machine-local locator without embedding company facts or credentials in global instructions.
+Install company-os, company-os-sync, and company-os-restore automatically during setup through npx skills add with --global and --agent. They are required. Ask only about optional GrillMe and install it through the same flow when selected. Files under this kit's .agents/skills/ are distribution sources, not a substitute for global installation. Do not update unrelated global skills. Maintain a machine-local locator without embedding company facts or credentials in global instructions.
 
 Cowork may need account-level skill delivery rather than machine-global discovery. Verify the actual app; do not equate shell access with skill discovery or local scheduling. See .company-os/references/app-setup.md.
 

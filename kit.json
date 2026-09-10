@@ -1,10 +1,13 @@
 {
   "name": "Company OS",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "setup_schema": 3,
   "source": "https://github.com/LeanLabs0/CompanyOS",
   "handoff": "https://www.leanlabs.com/brain.md",
   "requires_git": true,
+  "requires_github_cli": true,
+  "requires_npm": true,
+  "requires_core_skills": true,
   "requires_scripts": true,
   "node_minimum": 22,
   "shared_paths": [

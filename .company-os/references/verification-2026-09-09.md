@@ -6,6 +6,8 @@ Final release check: npm run check:release passed using a fresh Git clone of the
 
 The clean-clone check exposed Windows CRLF handling in the kit validator. The validator now normalizes line endings before checking text rules.
 
+Follow-up verification, 2026-09-10: kit 0.3.1 makes GitHub CLI/npm and all three core skills explicit requirements, creates private repositories by default, and offers only GrillMe as an optional skill. The 46-file clean-clone release check and all 17 sync/recovery tests passed again; modified skill packages validated, and core/GrillMe installation previews used the global npx skills add flow. These checks do not establish that a new agent follows the revised onboarding correctly; that remains the user's app retest.
+
 ## Verified
 
 - Company exports contain only wiki/ and corrections/, with no private Git ancestry or personal commit messages.

@@ -13,6 +13,8 @@ Read the resolved brain's AGENTS.md and .company-os/workflows/prime.md, then con
 
 For a fresh install with no brain files, read https://www.leanlabs.com/brain.md. Verify the live handoff's setup schema matches the intended kit; do not invent a missing starter or overwrite existing work.
 
+During setup, automatically install missing Git, GitHub CLI, Node/npm/npx, and all three required core skills through the global npx skills add flow. Create private personal/company repositories unless existing URLs were supplied. Do not offer these requirements as optional or stop at an installation preview. Ask only about optional GrillMe; the user handles unavoidable OS/app approvals and GitHub sign-in. Report actual blockers and incomplete setup honestly. Company publication still requires its exact content review.
+
 Apply only context relevant to the task's named company. Keep the current project's own instructions, working directory, and deliverable location. Brain Git commands must use the absolute helper path; never push the current project by accident.
 
 Do not claim a pointer, skill listing, or remembered conversation proves recall. Read the saved files and cite them. For cross-project verification, retrieve one priority and a preference or identity fact in a fresh conversation.

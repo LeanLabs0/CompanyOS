@@ -1,27 +1,35 @@
 # Global skills
 
-A skill source file in the repository is not a global installation. Install selected skills through the Vercel Agent Skills CLI, with explicit global scope and the selected host target.
+A skill source file in the repository is not a global installation. Install the required core skills automatically through the Vercel Agent Skills CLI, with explicit global scope and the current supported host target. GitHub CLI and Node/npm/npx are setup requirements, not optional skill dependencies to defer.
 
 ## Core and optional skills
 
 The distribution sources are under .agents/skills/:
 
-- company-os: setup/loading from any permitted project.
-- company-os-sync: automatic personal backup and reviewed company publication.
-- company-os-restore: second-machine recovery.
-- grill-me: the offered, self-contained GrillMe interview.
+- company-os: required setup/loading from any permitted project.
+- company-os-sync: required automatic personal backup and reviewed company publication.
+- company-os-restore: required second-machine recovery.
+- grill-me: the only optional skill offered in this release, a self-contained GrillMe interview.
 
-Offer up to three more capabilities based on the user's work. Do not install a large catalog by default or fabricate packages. Review each source and its dependencies. Existing same-name global skills need comparison before replacement.
+The manifest reserves space for future optional skills; do not offer additional packages during current onboarding. Existing same-name global skills need comparison before replacement.
 
-Use the bundled installer to preview the exact action:
+Setup already authorizes the core installation. Inspect the bundled sources, then run the installer with --install:
 
 ~~~text
-node <brain>/.company-os/scripts/install-skills.mjs --agent codex --skill company-os,company-os-sync,company-os-restore
+node <brain>/.company-os/scripts/install-skills.mjs --agent codex --skill company-os,company-os-sync,company-os-restore --install
 ~~~
 
-After the user selects these skills, add --install. Repeat for another selected supported target, such as claude-code or cursor. The helper delegates to a pinned Vercel skills CLI; it never copies files directly into the machine-global skill directories.
+Use the current app's supported target (codex, claude-code, or another documented target). Do not ask the user to choose whether core skills should be installed. The helper executes the equivalent of npx --yes skills@1.5.25 add <brain> --global --agent <target> --skill company-os company-os-sync company-os-restore --yes; it never copies files directly into global skill directories. Omitting --install is a preview for maintainers, not completed onboarding.
 
-For a reviewed same-name update, use --update-reviewed only after confirming that source is the intended replacement. Do not replace the user's unrelated GrillMe implementation automatically.
+If the user selects optional GrillMe, also run:
+
+~~~text
+node <brain>/.company-os/scripts/install-skills.mjs --agent codex --skill grill-me --install
+~~~
+
+That uses the same npx skills add global installation flow. A refusal of GrillMe affects only GrillMe; core installation continues. Install for other apps only when requested or part of the user's established setup.
+
+Inspect existing same-name packages yourself. Reuse a matching installed Company OS version after verifying discovery, or update a verified Company OS package with --update-reviewed as part of authorized setup; do not ask again whether core installation should happen. If the existing package is unrelated or its ownership is ambiguous, preserve it and resolve that collision explicitly. Do not replace the user's unrelated GrillMe implementation automatically.
 
 The source defaults to the inspected local kit. Published GitHub sources or direct reviewed skill subdirectories can be supplied with --source. For shared company sources use a reviewed company repository tree URL pointing at wiki/skills/<name>. Prefer an immutable reviewed commit in the URL for third-party/company packages. Use --cli-version only when deliberately updating the CLI.
 
@@ -47,7 +55,7 @@ Cowork's documented account-level skill system is distinct from machine-global C
 
 ## Restore
 
-Use the manifest to reinstall the selected sources, re-register the brain's new path, and verify each host again. Do not copy old authentication or machine absolute paths from another computer. A global skill source removed upstream needs recovery from its owned backed-up source or a deliberate replacement.
+Reinstall the required core skills even if an incomplete older manifest omitted them, plus the previously selected optional sources. Re-register the brain's new path and verify each host again. Do not copy old authentication or machine absolute paths from another computer. A global skill source removed upstream needs recovery from its owned backed-up source or a deliberate replacement.
 
 Sources reviewed 2026-09-09:
 
