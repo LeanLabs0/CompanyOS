@@ -16,6 +16,8 @@ Show this only when needed, tailored to the missing tools. Explain what each too
 
 Suggested introduction: "I couldn't install [missing tools] because [observed failure]. Your setup is saved. Please complete this one-time installation, then I'll verify it and continue."
 
+Select the relevant command, official download link, and version check for the user; do not paste this entire reference. For example, if only GitHub CLI is missing, show its command and gh --version, leaving working Git and Node installations alone. Keep folder/shell failures, tool installation failures, and authentication failures distinct so the suggested action addresses the observed blocker.
+
 ### PowerShell steps
 
 1. On the same Windows desktop where you are setting up Company OS, click **Start**, type **PowerShell**, and open **Windows PowerShell**. A normal window is sufficient to begin; an installer may request Windows approval. If testing inside Windows Sandbox, do this inside that Sandbox window.

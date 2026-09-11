@@ -26,7 +26,7 @@ Cowork needs its supported deletion permission for the exact connected brain roo
 
 Check for an existing brain before cloning anything. Inspect its remotes as well as AGENTS.md and setup state. A folder still pointing at LeanLabs0/CompanyOS may be a maintainer checkout or an unfinished starter; do not convert it merely because kit.json exists. Preserve it and establish its intended use if unclear. Resume an identified brain, preserving user files. For an older kit, use a reviewed migration; do not replace personalized files wholesale.
 
-For an older 0.3.x installation, follow the current starter's migration reference. Update its runtime, instructions, skill sources, and version metadata from an inspected current starter before resuming. Preserve personal/, wiki/, corrections/, repository settings, the sync baseline, and the installed-skill record. The configure step personalizes its README and removes only recognized unchanged starter material. Do not create a second brain or repeat answered questions. Update all syncing teammates to 0.4.0+ before publishing company root instructions; older helpers reject those files.
+For an older installation, follow the current starter's migration reference. Update its runtime, instructions, skill sources, and version metadata from an inspected current starter before resuming. Preserve personal/, wiki/, corrections/, repository settings, the sync baseline, the original sharing seed, and the installed-skill record. The configure step personalizes its README and removes only recognized unchanged starter material. Do not create a second brain or repeat answered questions. Update all syncing teammates to 0.4.0+ before publishing company root instructions; older helpers reject those files. Version 0.5.0 improves instruction routing without changing the setup or sync schema.
 
 If the user is restoring an existing private personal backup, clone that repository directly into an empty destination with its remote named personal, then follow the restored recovery instructions. Do not install a starter over their backup.
 
@@ -47,7 +47,7 @@ git -C <destination> remote remove origin
 
 Remove the starter remote immediately, before saving personal information. Do not offer an archive download path. If this session cannot run Git against persistent storage, explain the required local mode and continue there.
 
-Verify kit.json, AGENTS.md, .company-os/workflows/onboard.md, and .company-os/scripts/company-os.mjs. This handoff requires setup_schema 3 and kit 0.4.0 or newer. If the published source is older, stop installation and report the version mismatch instead of substituting an incompatible workflow.
+Verify kit.json, AGENTS.md, .company-os/workflows/onboard.md, and .company-os/scripts/company-os.mjs. This handoff requires setup_schema 3 and kit 0.5.0 or newer. If the published source is older, stop installation and report the version mismatch instead of substituting an incompatible workflow.
 
 For a fresh starter, use main as the personal branch. Never rename an existing personal backup's branch blindly.
 
@@ -55,7 +55,7 @@ For a fresh starter, use main as the personal branch. Never rename an existing p
 
 Read AGENTS.md and .company-os/workflows/onboard.md and carry out the workflow.
 
-Ask about the user's name/role, company/client, priority, and a useful source. Reuse any answers already supplied. Then automatically create and configure two private repositories, or use the existing personal/company URLs the user supplied:
+Ask about the user's name/role, company/client, priority, and a useful source. Reuse any answers already supplied. Leave missing answers unknown and ask only when needed; do not invent a confirmed priority from the setup request. Instruction examples are never user facts or suggested intake answers. Then automatically create and configure two private repositories, or use the existing personal/company URLs the user supplied:
 
 - personal: a private complete-brain backup, including unpublished company edits, excluding secrets and disposable machinery.
 - company: a separate private repository containing wiki/, corrections/, and its own short README.md and AGENTS.md, with company-only history. These root documents never include personal backup references or replace personal instructions.
@@ -84,7 +84,13 @@ Source files bundled with the kit are not an installation method by themselves. 
 
 ### 5. Finish work, back up, and review company sharing
 
+Route each statement by what it governs, not who said it. Split mixed messages into user-specific preferences, company knowledge, and private client material using AGENTS.md. Company-wide spelling, terminology, brand, and writing rules belong in wiki/ even when phrased as "I prefer" or "never use". A favourite colour stays personal unless explicitly made a brand rule. These examples explain routing; do not save them as facts.
+
+For an explicit company correction, update the authoritative wiki page, add a dated correction with the previous/corrected rule or fact and its source/reason/author, and update corrections/index.md. Remove only a clearly misplaced personal duplicate, preserving unrelated preferences and private details. Keep personal overrides personal. Preserve actual URLs, repository names, paths, identifiers, and verbatim quotations when correcting company prose. New facts need attribution but not automatic correction records. Surface material contradictions in relevant loaded knowledge before treating replacements as settled; do not require web research for every simple save.
+
 Save a useful first deliverable and read it back. Personal backup is enabled during setup and runs automatically. Incoming company changes are reconciled; outgoing wiki/correction changes are prepared for the user's review.
+
+Briefly confirm private saves separately from the concrete company changes ready to share. Keep private details out of the company review. A saved correction or successful personal backup does not mean it has been published to teammates.
 
 Show a brief company review directly in chat: the exact destination, material additions/edits/deletions, and concrete examples from the actual before/after content. Keep .company-sync/review.md as optional detail; the user need not open it to understand the decision. Keep batch IDs and publish commands internal. Ask "Share these changes? Reply 'Approve' or tell me what to change." A clear approval of that one current review authorizes the helper's exact retained ID; clarify ambiguous replies. Changed content or company revisions require a new review. Conflicts stop for a decision. Do not require a separate company-owner approval process.
 
@@ -122,7 +128,7 @@ Use this section only for the relevant failure. Do not show users every diagnost
 2. Check each tool and its version. On Windows, inspect existing installation paths for Git, GitHub CLI, and Node before reinstalling. Refresh the process PATH so helper subprocesses can find them. Use npm.cmd/npx.cmd when PowerShell blocks their .ps1 shims; do not weaken execution policy. Keep working installations and version managers intact.
 3. Install missing tools yourself through a supported route. If WinGet is available, use the exact package commands below, one at a time, through the app's supported installation approval flow when required. Wait for completion and verify the result. If WinGet is missing or its package source fails, use a current official installer matching the host architecture when that route is permitted; do not guess a versioned download URL or install another package manager unnecessarily.
 4. Diagnose errors before retrying. A stale PATH, corrected URL, changed permission, or restored network can justify a targeted retry. A command rejected before process creation means no installer ran. If the only explanation is "blocked by policy," report it accurately without inventing an administrator restriction. Do not repeat an unchanged rejected command, bypass rejection through another tool or computer control, or disable protections. A running installer or sync needs monitoring, not a duplicate operation.
-5. Only if supported agent-side routes are unavailable or exhausted, show the smallest manual fallback below. Explain the observed blocker and preserve setup progress. If the issue is a mount or credential boundary rather than missing Windows tools, explain that installing them will not by itself repair that boundary.
+5. Only if supported agent-side routes are unavailable or exhausted, show the smallest manual fallback below. Explain the observed blocker and preserve setup progress. Select the missing tool's command, matching download link, and version check for the user; do not paste the entire troubleshooting section. If the issue is a mount or credential boundary rather than missing Windows tools, explain that installing them will not by itself repair that boundary.
 
 **Last resort: user-assisted Windows installation.** Tell the user which tools are missing and why they need this one-time step. Git saves versions; GitHub CLI connects the repositories; Node.js includes npm/npx for the helper and skills. Show only the missing tools' commands:
 

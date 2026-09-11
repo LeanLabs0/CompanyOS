@@ -1,6 +1,6 @@
 {
   "name": "Company OS",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "setup_schema": 3,
   "source": "https://github.com/LeanLabs0/CompanyOS",
   "handoff": "https://www.leanlabs.com/brain.md",
@@ -25,6 +25,7 @@
   "company_publication": "reviewed-batch",
   "install_cleanup": {
     "package.json": [
+      "c9b1361d19efd4511de1425b24c1eb5bc9928d0030ec4f2cc4cb66ebd2ce3794",
       "b8d06f9d8d4baceb8f09458b8fb1554d1b9b2a2aebccf0021424eecdc641ccfd",
       "084061fe2ebcbe1585f4f400c18770e78aa555097e74fbb09608c8f852426834"
     ],
@@ -43,6 +44,7 @@
       "597aba5388978fbfcde0a823b22cf0f0661c2b33a963b6399925bea6452530c7"
     ],
     ".company-os/references/maintainer-testing.md": [
+      "6df4eea66f1e3476fa41be8c5d7632ee6d954b012d2d9fb6fbe32f65b440fcff",
       "7ee07ae19a358cc8f9e65cedce0913675035980be226c5cad266ca30b78db5f1",
       "35a57d98300508f34704dc3ef78ab2c32e94d80b9bb19f1e1d99a9416b8bdfe2",
       "1805dd0c6d8c19c2d402ea3223153f08cd38f262a44d91ed93d2483bdcc0b863"
@@ -53,6 +55,7 @@
       "4a763ebd4985dfabaf7f230bf43594d00cc98d57c4df31176e37a5c790741c22"
     ],
     ".company-os/release/brain.md": [
+      "6766671db937574294ea4e545f928a6e502a908033da3ca3f0972cdb5f2506e9",
       "bcab9db8a29cfff86983d93ef3b1f5b2de234be33e3a8e9e00415457ec0a8fb0",
       "4c4915b5c43549b810dc3af4fbd1b9e5e55aec3c918a123d35254bfbbc6c558f",
       "15788b58e377fc7773e770b4c5e0c86416ab00a1a711a2200f7530b9ffb74605",

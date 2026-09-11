@@ -17,7 +17,7 @@ Setup authorizes installing the required tools and core skills, creating the two
 
 Ask the next missing question, combining related choices when convenient. Skip known answers and allow the user to pause.
 
-- Name or role, company/client, current priority, and a useful URL or document. A personal brain is valid. Save answers directly in their authoritative personal files rather than duplicating an intake.
+- Name or role, company/client, current priority, and a useful URL or document. A personal brain is valid. Route each answer using AGENTS.md: identity and personal priorities under personal/, shared company facts under wiki/, and private client material under personal/. Do not duplicate an intake. Leave unanswered fields unknown; ask only when needed for the next useful step. A setup request is not a confirmed ongoing priority. Never save suggested answers or instruction examples as the user's facts.
 - Existing destinations: accept any personal/company repository URLs already supplied. Mention once that the user can supply existing URLs; otherwise proceed with private repository creation. An existing personal brain triggers restore, and an existing company URL triggers join. Do not require an answer before taking the default path when no existing destination was indicated.
 - Personal backup: create and configure a private repository automatically. Explain that it includes the full brain, including unpublished company edits, and runs automatically until withdrawn.
 - Company knowledge: create and configure a separate private repository automatically, or join the supplied one. Explain that all wiki/ and corrections/ content is shareable and outgoing batches require review. Recommend ownership by the company's GitHub organization when available; an individual account remains supported.
@@ -68,6 +68,8 @@ If the user asks to invite coworkers, obtain exact GitHub usernames and verify t
 ## Save context and install skills
 
 Private answers go under personal/. Shared company facts and rules go into wiki/ with their source and confirmation status. Do not publish scraped claims as human-confirmed facts. For join, import the company's existing knowledge before asking the user to re-enter it.
+
+Split mixed answers by scope, following AGENTS.md's correction procedure. A company spelling instruction is shared guidance even when phrased as "I prefer" or "never use"; a favourite colour is personal unless the user makes it a brand rule. Correct the authoritative page and correction index together, remove any clearly misplaced personal duplicate, and show the actual company changes for review. Compare relevant loaded sources and ask about material contradictions without requiring research for every save. Briefly confirm private saves separately from pending company sharing.
 
 Run register to save the machine-local brain locator. Follow [global skills](../references/skills.md) and execute the required core installation with --install; a preview is not completion. Leave optional selection for the final step. Do not equate source files in this repository with installation. Verify the current app sees the skills and record version/source and app results. If the host requires an account-level adapter, complete that supported route or report core installation as blocked rather than skipped.
 

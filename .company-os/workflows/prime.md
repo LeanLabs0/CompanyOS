@@ -12,6 +12,6 @@ The normal entry point is `/company-os` followed by the user's request, or the a
 6. Keep the current project's instructions and deliverable location. Apply brain preferences within their scope; run backup only against the brain root. Files outside CompanyOS are not covered by its backup.
 7. Continue useful work. Surface a pending company review once, with destination and actual changes; do not treat silence as approval. Follow sync workflow if the user approves.
 
-For a fresh-conversation recall check, retrieve a saved priority and confirmed preference, or use an identity fact if no preference exists. Cite the file paths. Record app/mode/date and whether discovery was automatic, explicit-path, or user-reported in .company-os/setup.md. Do not claim another app passed without evidence.
+For a fresh-conversation recall check, retrieve a saved priority and confirmed preference, or use an identity fact if no preference exists. If no priority was supplied, say it is unknown rather than inventing one. Cite the file paths. Record app/mode/date and whether discovery was automatic, explicit-path, or user-reported in .company-os/setup.md. Do not claim another app passed without evidence.
 
 At the end of completed work, back up intended brain changes to personal if enabled. If shared files changed, prepare the company review as well. An explicit request to avoid mutations takes precedence over automatic routines.

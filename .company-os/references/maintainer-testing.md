@@ -32,13 +32,26 @@ Tests inject local repository URLs through the library only. The production CLI 
 With invented data, record app/version, OS, mode, kit version, date, and observed results:
 
 1. A person who can create an account and approve browser login completes setup without opening files or a terminal.
-2. Required tools and core skills install automatically; private repositories are created by default, supplied URLs restore/join instead, and interrupted setup resumes without duplicates. Optional GrillMe can be declined without skipping core installation.
+2. Required tools and core skills install automatically; private repositories are created by default, supplied URLs restore/join instead, and interrupted setup resumes without duplicates. All eight optional recommendations appear with brief descriptions at the end. Only selected skills install; declining all optional skills does not skip core installation.
 3. Global skills install through the CLI, appear in the actual host, and load context from a fresh conversation in another project.
 4. Cowork's account-level adapter is tested separately from Claude Code's global skill discovery.
 5. A scheduled run reads the actual local brain, backs up personal work, and leaves company publication pending.
 6. The user reviews a batch, approves it, and the exact approved changes arrive at company.
 7. A second computer restores from a personal repository URL, reconnects company, and preserves unpublished edits.
 8. An existing user's obsolete hooks/tasks are removed deliberately during migration; the fresh starter contains no legacy entry points.
+
+## 0.5.0 instruction acceptance scenarios
+
+Use disposable brains with invented data. These are behavioral checks for a real agent session, not evidence supplied by the deterministic sync tests. Keep example facts out of the released starter. Record observed files, review content, and fresh-session behavior; do not claim these passed from reading the instructions alone.
+
+1. In a fresh brain for fictional North Star, say: "Remember: my favourite colour is blue. North Star was founded in 2018. Always write North Star, never NorthStar. Keep client Juniper's interview note private: their launch budget is $4,000." Expect the colour in personal/preferences.md, the founding fact in wiki/company.md, a naming rule in wiki/rules.md with a dated correction and corrections index entry, and the private note under personal/research/ or personal/projects/. The naming rule must not be a personal preference. The review includes the founding fact and naming correction, never the colour or client note. No publication occurs before approval.
+2. Seed an erroneously filed naming rule next to a real personal preference. Ask to correct its company scope. Expect only the naming rule moved, an authoritative shared rule and correction record, unrelated personal data preserved, and a fresh company review. Preserve a real URL such as https://northstar.example and the repository slug northstar-company-os.
+3. In separate cases, say "Keep answers to me short" and "Our customer emails should be short." Expect personal and company homes respectively. In a context with both personal and brand colours, "Change the colour to blue" should prompt a scope question before shared mutation. An explicit personal override must not replace company guidance.
+4. Seed a relevant company source with a founding year that conflicts with the user's new statement. Expect one focused clarification before marking the new year settled. With no conflict, a simple attributed save need not trigger web research. An unanswered priority remains unknown; no suggested answer is saved as confirmed.
+5. Approve the mixed-message company review, then inspect both histories: personal backup contains the intended whole brain; company contains only shared content. In a fresh conversation for that company, ask for a short draft and verify it uses the corrected name, citing the saved rule. Private preferences must not become company facts.
+6. With only GitHub CLI missing, verify the agent first uses permitted installation routes. If the host rejects installation, expect only GitHub CLI's exact PowerShell steps, official matching installer link, and version check. If the failure is a broken mount instead, expect folder/shell troubleshooting rather than irrelevant installation. Resume from saved progress after resolution.
+
+Cross-app discovery, fresh-chat authentication, and clean-machine automatic installation each need their own observed pass. Skill metadata validation and release checks do not prove those outcomes.
 
 ## Release order
 

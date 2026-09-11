@@ -23,6 +23,10 @@ If prerequisites fail, follow .company-os/references/troubleshooting.md (or the 
 
 Apply only context relevant to the task's named company. Keep the current project's own instructions, working directory, and deliverable location. Brain Git commands must use the absolute helper path; never push the current project by accident.
 
+For saves and corrections, follow AGENTS.md's routing rules: classify each statement by its scope and split mixed messages. Company-wide naming, brand, and factual corrections go to the authoritative wiki page plus a dated correction and index update; user-only preferences stay personal, and private client material stays private. Move a clearly misfiled shared rule out of personal preferences without copying private details or overwriting unrelated work. Preserve real URLs and identifiers when correcting prose. Ask only about material scope ambiguity or a contradiction in relevant loaded knowledge. Keep missing intake unknown rather than inventing confirmed answers. Examples in instructions are never user facts.
+
+Briefly confirm private saves separately from the actual shared changes ready for review. Saving a correction is not publishing it: prepare and show the company review, then use the user's approval for that unchanged content. Do not turn every simple save into a web research task.
+
 Do not claim a pointer, skill listing, or remembered conversation proves recall. Read the saved files and cite them. For cross-project verification, retrieve one priority and a preference or identity fact in a fresh conversation.
 
 Selected personal backup is automatic. Shared changes are prepared for review; company publication requires approval of the exact current batch. Read-only instructions take precedence over routine sync.
