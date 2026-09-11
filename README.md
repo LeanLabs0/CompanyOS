@@ -4,7 +4,7 @@ Your personal second brain, with a shared company wiki. Talk to your agent, answ
 
 ## Start
 
-In ChatGPT Work, Claude, or another agent with local shell and persistent folder access, say:
+In ChatGPT Work, Claude Code, Grok, Cursor, VS Code, or another local IDE / coding agent, say:
 
 > Set up Company OS using https://www.leanlabs.com/brain.md
 

@@ -8,6 +8,7 @@ Use an app that can run commands on your computer:
 
 - **ChatGPT:** Work, with that folder as the local project, or Codex.
 - **Claude:** Claude Code in that folder. Do not start setup in Cowork.
+- **Also fine:** Grok, Cursor, VS Code, or another IDE / coding agent with a local terminal in that folder.
 
 Then paste this page's URL into your agent:
 
@@ -23,9 +24,9 @@ A request to set up Company OS authorizes installing required tools and core ski
 
 Verify shell access to a persistent folder the user controls. Default to Documents/CompanyOS, but resolve the actual user-visible path. A cloud shell or temporary tool folder is not proof of local installation.
 
-If this session is Claude Cowork, Claude Desktop without Claude Code, or any click-only / cloud-only Claude shell, stop setup. Tell the user to open Claude Code in the brain folder, paste the same request, and continue there. Do not install tools, clone, write a setup script, or drive click-only PowerShell from Cowork.
+If this session is Claude Cowork, Claude Desktop without Claude Code, or any click-only / cloud-only shell, stop setup. Tell the user to open Claude Code, ChatGPT Work, Codex, Grok, or a local IDE such as Cursor or VS Code in the brain folder, paste the same request, and continue there. Do not install tools, clone, write a setup script, or drive click-only PowerShell from Cowork.
 
-If this session is ChatGPT Work or Codex and the brain folder is not accessible, guide the user before installing tools or cloning: "Create or select your CompanyOS folder, open it as the local project, then say 'Continue setup.'" Verify the actual connected root; selecting a project name alone is not proof of folder access. Preserve answered questions when continuing.
+If this session is an allowed host-shell app and the brain folder is not accessible, guide the user before installing tools or cloning: "Create or select your CompanyOS folder, open it as the local project or workspace, then say 'Continue setup.'" Verify the actual connected root; selecting a project name alone is not proof of folder access. Preserve answered questions when continuing.
 
 Check for an existing brain before cloning anything. Inspect its remotes as well as AGENTS.md and setup state. A folder still pointing at LeanLabs0/CompanyOS may be a maintainer checkout or an unfinished starter; do not convert it merely because kit.json exists. Preserve it and establish its intended use if unclear. Resume an identified brain, preserving user files. For an older kit, use a reviewed migration; do not replace personalized files wholesale.
 
@@ -127,7 +128,7 @@ Use this section only for the relevant failure. Do not show users every diagnost
 
 **Agent-led recovery first:**
 
-1. Verify the connected brain folder and actual execution environment. If the session is Claude Cowork or otherwise lacks a host shell, stop and send the user to Claude Code rather than retrying mounts, click-only terminals, or a file-bridge clone. In ChatGPT Work or Codex, confirm the brain is the local project folder. A file write is not proof that Git can access the folder.
+1. Verify the connected brain folder and actual execution environment. If the session is Claude Cowork or otherwise lacks a host shell, stop and send the user to Claude Code, ChatGPT Work, Codex, Grok, or a local IDE rather than retrying mounts, click-only terminals, or a file-bridge clone. In an allowed app, confirm the brain is the local project or workspace folder. A file write is not proof that Git can access the folder.
 2. Check each tool and its version. On Windows, inspect existing installation paths for Git, GitHub CLI, and Node before reinstalling. Refresh the process PATH so helper subprocesses can find them. Use npm.cmd/npx.cmd when PowerShell blocks their .ps1 shims; do not weaken execution policy. Keep working installations and version managers intact.
 3. Install missing tools yourself through a supported route. If WinGet is available, use the exact package commands below, one at a time, through the app's supported installation approval flow when required. Wait for completion and verify the result. If WinGet is missing or its package source fails, use a current official installer matching the host architecture when that route is permitted; do not guess a versioned download URL or install another package manager unnecessarily.
 4. Diagnose errors before retrying. A stale PATH, corrected URL, changed permission, or restored network can justify a targeted retry. A command rejected before process creation means no installer ran. If the only explanation is "blocked by policy," report it accurately without inventing an administrator restriction. Do not repeat an unchanged rejected command, bypass rejection through another tool or computer control, or disable protections. A running installer or sync needs monitoring, not a duplicate operation.

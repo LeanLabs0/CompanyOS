@@ -5,7 +5,7 @@ description: Restore Company OS from a private personal GitHub backup on a new o
 
 # Restore Company OS
 
-Ask for the personal backup repository URL if it was not supplied. Check persistent local shell access and the user's intended destination, normally Documents/CompanyOS. Restore from ChatGPT Work, Codex, or Claude Code. If this session is Claude Cowork, stop and tell the user to open Claude Code in the destination folder. Never overwrite an existing brain.
+Ask for the personal backup repository URL if it was not supplied. Check persistent local shell access and the user's intended destination, normally Documents/CompanyOS. Restore from ChatGPT Work, Codex, Claude Code, Grok, or a local IDE such as Cursor or VS Code. If this session is Claude Cowork, stop and tell the user to open one of those apps in the destination folder. Never overwrite an existing brain.
 
 The agent handles prerequisite installation. If tools or permissions fail, use the current brain's .company-os/references/troubleshooting.md, or the troubleshooting section at https://www.leanlabs.com/brain.md before the backup is accessible. Manual steps are a last resort for a concrete unresolved blocker; preserve the destination and resume recovery afterward.
 
