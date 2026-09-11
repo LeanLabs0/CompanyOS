@@ -4,8 +4,6 @@ Company OS is a personal second brain with a shared company wiki. You answer que
 
 Before setup, create an empty CompanyOS folder inside Documents, or select your existing brain folder. In ChatGPT Work, use **Choose project** to open a local project with that folder attached as its primary folder. In Claude Cowork, use **Add folder** to connect CompanyOS itself, not the parent Documents folder. Your agent will guide you through any required folder permission.
 
-ChatGPT Work/local desktop testing has completed personal backup and reviewed company publication on Windows with prerequisites already installed. Automatic installation on a clean machine and second-machine recovery remain unverified. Cowork has passed local Git checks with folder deletion permission, but secure GitHub authentication remains blocked in the tested environment. Folder selection alone does not resolve that limitation.
-
 Then paste this page's URL into your agent:
 
 > Help me set up Company OS using this page.
