@@ -2,7 +2,12 @@
 
 Company OS is a personal second brain with a shared company wiki. You answer questions, paste useful URLs, and approve sign-ins. Your agent manages files, Git, and skills.
 
-Before setup, create an empty CompanyOS folder inside Documents, or select your existing brain folder. In ChatGPT Work, use **Choose project** to open a local project with that folder attached as its primary folder. In Claude Cowork, use **Add folder** to connect CompanyOS itself, not the parent Documents folder. Your agent will guide you through any required folder permission.
+Before setup, create an empty CompanyOS folder inside Documents, or select your existing brain folder.
+
+Use an app that can run commands on your computer:
+
+- **ChatGPT:** Work, with that folder as the local project, or Codex.
+- **Claude:** Claude Code in that folder. Do not start setup in Cowork.
 
 Then paste this page's URL into your agent:
 
@@ -18,9 +23,9 @@ A request to set up Company OS authorizes installing required tools and core ski
 
 Verify shell access to a persistent folder the user controls. Default to Documents/CompanyOS, but resolve the actual user-visible path. A cloud shell or temporary tool folder is not proof of local installation.
 
-If the brain folder is not accessible, guide the user before installing tools or cloning: "Create or select your CompanyOS folder, open it as a local project in ChatGPT Work, then say 'Continue setup.'" For Cowork, ask them to connect that exact folder using Add folder. Verify the actual connected root; selecting a project name alone is not proof of folder access. If a parent folder is already connected and prevents scoped permission, start a task with only the brain folder connected. Preserve answered questions when continuing.
+If this session is Claude Cowork, Claude Desktop without Claude Code, or any click-only / cloud-only Claude shell, stop setup. Tell the user to open Claude Code in the brain folder, paste the same request, and continue there. Do not install tools, clone, write a setup script, or drive click-only PowerShell from Cowork.
 
-Cowork needs its supported deletion permission for the exact connected brain root because Git removes its own temporary files. Explain that the permission covers that folder's subtree and may need approval in later sessions. Do not request deletion across Documents, bypass a rejected request, or assume a successful file write proves Git works. If permission or secure authentication is unavailable, report the specific blocker before creating repositories; do not promise a new login every session or install a sandbox keyring as an automatic workaround.
+If this session is ChatGPT Work or Codex and the brain folder is not accessible, guide the user before installing tools or cloning: "Create or select your CompanyOS folder, open it as the local project, then say 'Continue setup.'" Verify the actual connected root; selecting a project name alone is not proof of folder access. Preserve answered questions when continuing.
 
 Check for an existing brain before cloning anything. Inspect its remotes as well as AGENTS.md and setup state. A folder still pointing at LeanLabs0/CompanyOS may be a maintainer checkout or an unfinished starter; do not convert it merely because kit.json exists. Preserve it and establish its intended use if unclear. Resume an identified brain, preserving user files. For an older kit, use a reviewed migration; do not replace personalized files wholesale.
 
@@ -78,7 +83,7 @@ The company-os, company-os-sync, and company-os-restore skills are required. Ins
 
 Leave optional skill selection until the final step, after repository sync and the return/verification instructions. Core installation must not depend on optional choices.
 
-Source files bundled with the kit are not an installation method by themselves. Register the brain locator and verify the app actually discovers the global skills. Cowork may need the equivalent account-level adapter; do not claim machine-global Claude Code installation proves Cowork support.
+Source files bundled with the kit are not an installation method by themselves. Register the brain locator and verify the app actually discovers the global skills. After a Claude Code install, Cowork may need the equivalent account-level adapter for later use; do not claim machine-global Claude Code installation proves Cowork support, and do not finish first-time setup there.
 
 ### 5. Finish work, back up, and review company sharing
 
@@ -122,7 +127,7 @@ Use this section only for the relevant failure. Do not show users every diagnost
 
 **Agent-led recovery first:**
 
-1. Verify the connected brain folder and actual execution environment. In Cowork, correct a missing root connection or reconnect using the supported app interface and test once. A file bridge that writes documents is not proof that Git can access them. If the same mount failure remains, stop without fabricating a clone through file copying or a Git bundle.
+1. Verify the connected brain folder and actual execution environment. If the session is Claude Cowork or otherwise lacks a host shell, stop and send the user to Claude Code rather than retrying mounts, click-only terminals, or a file-bridge clone. In ChatGPT Work or Codex, confirm the brain is the local project folder. A file write is not proof that Git can access the folder.
 2. Check each tool and its version. On Windows, inspect existing installation paths for Git, GitHub CLI, and Node before reinstalling. Refresh the process PATH so helper subprocesses can find them. Use npm.cmd/npx.cmd when PowerShell blocks their .ps1 shims; do not weaken execution policy. Keep working installations and version managers intact.
 3. Install missing tools yourself through a supported route. If WinGet is available, use the exact package commands below, one at a time, through the app's supported installation approval flow when required. Wait for completion and verify the result. If WinGet is missing or its package source fails, use a current official installer matching the host architecture when that route is permitted; do not guess a versioned download URL or install another package manager unnecessarily.
 4. Diagnose errors before retrying. A stale PATH, corrected URL, changed permission, or restored network can justify a targeted retry. A command rejected before process creation means no installer ran. If the only explanation is "blocked by policy," report it accurately without inventing an administrator restriction. Do not repeat an unchanged rejected command, bypass rejection through another tool or computer control, or disable protections. A running installer or sync needs monitoring, not a duplicate operation.

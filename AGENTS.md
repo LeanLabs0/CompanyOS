@@ -10,6 +10,8 @@ Read [.company-os/workflows/prime.md](.company-os/workflows/prime.md) when loadi
 
 Setup requires Git, GitHub CLI, Node 22+, npm/npx, and the core Company OS skills. A setup request authorizes installing missing requirements, creating private personal/company repositories by default unless existing URLs are supplied, configuring them, and enabling automatic personal backup. Carry out these steps without a separate opt-in checklist. The user handles required sign-in and OS/app approvals. Honor explicit opt-outs, but do not call incomplete required setup finished. After initial sync, offer the eight optional recommendations in .company-os/references/skills.md with brief descriptions; install only the user's selections.
 
+Setup and restore need a host shell that can run Git and GitHub CLI on the user's computer. In ChatGPT, use Work with the brain folder as the local project, or Codex. In Claude, use Claude Code in that folder. Do not start or continue setup from Claude Cowork or a click-only / cloud-only Claude session; tell the user to open Claude Code and resume there. Cowork may still read and write an already-installed brain.
+
 Resolve the actual brain path before any operation. Global skills use the per-user pointer at ~/.company-os/brain.json; a pointer is not proof of access. Read the files before claiming recall. Do not run brain Git commands in the user's unrelated working project.
 
 ## Authoritative locations
@@ -85,7 +87,7 @@ If direct Git work is needed for a reviewed recovery, explain it and retain thes
 
 Install company-os, company-os-sync, and company-os-restore automatically during setup through npx skills add with --global and --agent. They are required. Offer the complete optional menu from .company-os/references/skills.md at the end of onboarding and install only selected names through the same flow. Files under this kit's .agents/skills/ are distribution sources, not a substitute for global installation. Do not update unrelated global skills. Maintain a machine-local locator without embedding company facts or credentials in global instructions.
 
-Cowork may need account-level skill delivery rather than machine-global discovery. Verify the actual app; do not equate shell access with skill discovery or local scheduling. See .company-os/references/app-setup.md.
+After setup, Cowork may need account-level skill delivery rather than machine-global discovery. Verify the actual app; do not equate shell access with skill discovery or local scheduling. See .company-os/references/app-setup.md.
 
 Schedules are opt-in. Use one designated scheduler and the same sync helper. Verify the scheduled session can reach this exact persistent folder. Never claim a cloud-only task can see uncommitted laptop files. Save the recipe in the brain and machine-specific registration outside it.
 
