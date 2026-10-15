@@ -29,9 +29,9 @@ if (!kit.requires_github_cli || !kit.requires_npm || !kit.requires_core_skills) 
 if (JSON.parse(read('package.json')).version !== kit.version) errors.push('Package and kit release versions differ.');
 const skillManifest = JSON.parse(read('.company-os/skills.json'));
 if (JSON.stringify(skillManifest.core) !== JSON.stringify(['company-os', 'company-os-sync', 'company-os-restore']) || JSON.stringify(skillManifest.offered) !== JSON.stringify(['grill-me', 'unslop', 'find-skills', 'copywriting', 'content-strategy', 'seo-audit', 'emails', 'social'])) errors.push('Core skills and the reviewed optional shortlist must match the install contract.');
-const expected = ['company-os', 'company-os-sync', 'company-os-restore', 'grill-me'];
+const expected = ['company-os', 'company-os-sync', 'company-os-restore', 'grill-me', 'company-os-operator'];
 const skillDirectories = fs.readdirSync(path.join(root, '.agents', 'skills')).sort();
-if (JSON.stringify(skillDirectories) !== JSON.stringify([...expected].sort())) errors.push('The release must contain exactly the four current skill packages.');
+if (JSON.stringify(skillDirectories) !== JSON.stringify([...expected].sort())) errors.push('The release must contain exactly the five current skill packages.');
 for (const retired of ['archives', 'scripts', '.claude', '.gemini', 'companies', 'context', 'decisions', 'memory', 'projects', 'references', 'rules']) {
   if (fs.existsSync(path.join(root, retired))) errors.push('Obsolete starter directory: ' + retired);
 }
@@ -40,7 +40,7 @@ if (setup.personal !== null || setup.company !== null) errors.push('The release 
 const state = JSON.parse(read('.company-os/sync-state.json'));
 if (state.company !== null || state.head !== null) errors.push('The release must not contain a user sync baseline.');
 if (JSON.parse(read('.company-os/skills.json')).installed.length) errors.push('The release must not contain machine-specific skill installations.');
-for (const personalState of ['.company-os/setup.md', '.company-os/schedule.md', '.company-sync']) {
+for (const personalState of ['.company-os/setup.md', '.company-os/schedule.md', '.company-os/operator-state.json', 'personal/operator', '.company-sync']) {
   if (fs.existsSync(path.join(root, personalState))) errors.push('Local user state must not ship: ' + personalState);
 }
 for (const name of expected) {
@@ -83,4 +83,4 @@ try {
 } catch (error) { errors.push(error.message); }
 if (errors.length) {
   console.error(errors.join('\n')); process.exitCode = 1;
-} else console.log('Company OS kit checks passed: metadata, four skill sources, active links, sharing seed, and install contract.');
+} else console.log('Company OS kit checks passed: metadata, five skill sources, active links, sharing seed, and install contract.');
