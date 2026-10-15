@@ -1,6 +1,6 @@
 {
   "name": "Company OS",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "setup_schema": 3,
   "source": "https://github.com/LeanLabs0/CompanyOS",
   "handoff": "https://www.leanlabs.com/brain.md",
@@ -25,6 +25,7 @@
   "company_publication": "reviewed-batch",
   "install_cleanup": {
     "package.json": [
+      "13be26e0ffc178441a3df673d880ca91ce1c89ad189d4fca90f8a0bf1f4cabd6",
       "7ea2f3c55a0fe66713c09b5a15b8a5708588b28c11f6dd08245e2f449f278972",
       "c9b1361d19efd4511de1425b24c1eb5bc9928d0030ec4f2cc4cb66ebd2ce3794",
       "b8d06f9d8d4baceb8f09458b8fb1554d1b9b2a2aebccf0021424eecdc641ccfd",
@@ -36,6 +37,7 @@
       "05e56529ff5d2a6849320829a53738cfe2224882629054e2069d9100426c897f"
     ],
     ".company-os/scripts/check-kit.mjs": [
+      "c34abd56eda413483a03fef940f0fd7ca82ec9e99de93884c4234d9f247ae46b",
       "6e015b139c2e07c0101cbcfb9c633bdc611e3db611624a9451843af68a30da13",
       "e07b7e2f2c6a4fca6a068fc23a8c0d40e364d161915fead0a54eba0e78cd1d55",
       "57e8c4f2630182ce7c5c4045402457fdef3f5983b722cc13a9f272d2a83bcbfd"
@@ -45,7 +47,9 @@
       "597aba5388978fbfcde0a823b22cf0f0661c2b33a963b6399925bea6452530c7"
     ],
     ".company-os/references/maintainer-testing.md": [
+      "842b64399c501eb9ed106a7f4fa083b33213c51446e36cca8c37f02f96a44bfe",
       "c3dec75c2682a681c66682c91c792edb1aa3d89c38705c542561e0ae5b3e35fc",
+      "78bd32593050b1baf288c148e9f6b00faa9e530895ea82044b029739f0ce7d8e",
       "6df4eea66f1e3476fa41be8c5d7632ee6d954b012d2d9fb6fbe32f65b440fcff",
       "71aeb4b6980a07b1a6576159f7211f7153133f66e54e9aa1864913dc98f6b208",
       "edf10df4fb61c99ebe985322b3c696b6080cbab425e8dab9980f641b1e4082bd",
@@ -59,6 +63,7 @@
       "4a763ebd4985dfabaf7f230bf43594d00cc98d57c4df31176e37a5c790741c22"
     ],
     ".company-os/release/brain.md": [
+      "43db67e426ecc0b08c78f0f9deade924e082b8b61283566ea3d53d4c939e1fe0",
       "2f00e36af471147266bab76e00f6cd2b30bb63bb4ef336cd24dfb8da182fa09e",
       "1acad4c61034c32f69c8d323be0bb82a1d8848af3ded84be1ad53f4046d4a6eb",
       "793134abd13a3b967d9718d2f2bca6c7bc58eeefebd7b9a3bb77a0cb7fc708d5",

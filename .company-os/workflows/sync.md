@@ -35,6 +35,8 @@ node <brain>/.company-os/scripts/company-os.mjs publish --review <id>
 
 The helper checks the pending payload, current local files, company identity, branch, and remote revision. If any changed, prepare a fresh batch and show the updated review. It creates company-only history from the allowed paths and pushes one branch from an isolated workspace. It then attempts personal backup of the resulting baseline.
 
+If the user rejects a review that contains operator drafts, follow the undo steps in .company-os/workflows/operator.md before preparing again.
+
 A standalone request to "sync" requests preparation, not blanket approval of unseen company changes. A reply such as "yes, sync" to the one clearly presented publication review can approve those changes; interpret it in context rather than requiring a magic phrase. Review approval persists for that exact unchanged batch. Do not ask again merely because a helper needs a retry with unchanged approved content.
 
 ## Conflicts and interruptions

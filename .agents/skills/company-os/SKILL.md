@@ -11,7 +11,7 @@ Users return through `/company-os` followed by their request (or the app's verif
 
 Resolve the brain from an explicit task path or the machine's user-home pointer at .company-os/brain.json. Read the pointer with available filesystem tools; never infer a previous session's path. If it is missing, inspect the user's Documents/CompanyOS for kit.json. Ask for the brain path or personal backup URL if it cannot be found. Do not search unrelated client folders broadly.
 
-Read the resolved brain's AGENTS.md and .company-os/workflows/prime.md, then continue the task. For setup, read .company-os/workflows/onboard.md instead. To fill in or refresh saved context, follow .company-os/references/intake.md. For an existing personal backup URL on a new computer, follow the restore skill or the brain's recovery reference.
+Read the resolved brain's AGENTS.md and .company-os/workflows/prime.md, then continue the task. For setup, read .company-os/workflows/onboard.md instead. To fill in or refresh saved context, follow .company-os/references/intake.md. To set up the scheduled operator, use the company-os-operator skill. For an existing personal backup URL on a new computer, follow the restore skill or the brain's recovery reference.
 
 For a fresh install with no brain files, read https://www.leanlabs.com/brain.md. Verify the live handoff's setup schema matches the intended kit; do not invent a missing starter or overwrite existing work.
 

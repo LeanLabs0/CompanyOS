@@ -24,7 +24,7 @@ Ask the next missing question, combining related choices when convenient. Skip k
 - Core skills: install company-os, company-os-sync, and company-os-restore automatically for the current supported agent. They are required and are not an interview choice. Verify app-specific discovery.
 - Optional skills: leave this choice until the final step below, after initial repository sync and the return/verification instructions. Use saved context to tailor the suggestions.
 - First task: use the task already requested, or ask what useful output to finish today.
-- Optional routine: offer a daily company review using the chosen app. Ask for time/timezone and the designated machine only if they want it. Scheduling is not required to finish setup.
+- Optional operator: offer the Company OS operator, a scheduled routine that syncs, pulls recent meetings and chat into the brain, and leaves shared changes for review. If the user wants it, install the bundled company-os-operator skill and follow it. Scheduling is not required to finish setup.
 
 ## GitHub and initialization
 

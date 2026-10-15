@@ -1,12 +1,12 @@
-# Optional scheduled company review
+# Optional scheduled operator
 
 Policy: personal backup is automatic; outgoing company changes require user review. A schedule prepares work and reports results. It never invents approval.
 
-Ask for cadence, timezone, chosen app, and which machine should own the routine. Recommend one designated daily routine, not parallel schedules in every installed app. Keep the recipe in .company-os/schedule.md and the host-specific task ID/machine registration outside the Git backup.
+The bundled company-os-operator skill sets up the routine; each run follows .company-os/workflows/operator.md. Ask for cadence, timezone, chosen app, and which machine should own the routine. Recommend one designated daily routine, not parallel schedules in every installed app. Keep the recipe in .company-os/schedule.md and the host-specific task ID/machine registration outside the Git backup.
 
 ## Routine prompt
 
-> Read Company OS at [absolute persistent path]. Follow its AGENTS.md and .company-os/workflows/sync.md. Run the sync helper to back up personal work and prepare company sharing. Report the personal repository result separately. Show the exact company destination and summarize additions, changes, deletions, and skill-source changes. Leave the company batch pending for my review. Do not publish it without my approval of that batch. If nothing changed, report that briefly. Stop and explain conflicts. Do not touch unrelated project repositories.
+> Read Company OS at [absolute persistent path]. Follow its AGENTS.md and .company-os/workflows/operator.md for one operator run. Run the sync helper to back up personal work and prepare company sharing. Report the personal repository result separately. Show the exact company destination and summarize additions, changes, deletions, and skill-source changes. Leave the company batch pending for my review. Do not publish it without my approval of that batch. If nothing changed, report that briefly. Stop and explain conflicts. Do not touch unrelated project repositories.
 
 A later approval can be handled by an interactive agent using the same pending batch. Recheck exact content and remote revision. If the scheduled session cannot receive a reply, it leaves a pending review; it does not poll indefinitely or auto-approve.
 

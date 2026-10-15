@@ -42,10 +42,10 @@ Route by what each statement governs, following AGENTS.md. One answer can split 
 
 | Question | Home |
 |---|---|
-| 1 You | personal/about.md. If the user leads a team, also list them as a leader in wiki/team.md |
+| 1 You | personal/about.md. If the user is creating a new company repository, also list them in wiki/team.md as its first leader; otherwise note any team they lead in personal/about.md, since only an existing leader can add leaders |
 | 2 Priorities | personal/priorities.md, with the confirmation date and any deadline |
 | 3 Projects | one folder per project under personal/projects/ with its own README.md, registered in personal/projects/README.md |
-| 4 People | personal/about.md, under a "Who I work with" heading. Teammates' roles and ownership the user is fine sharing go to wiki/team.md |
+| 4 People | personal/about.md, under a "Who I work with" heading. Teammates' roles and ownership the user is fine sharing go to wiki/team.md, but not the leader list |
 | 5 Tools | personal/about.md. A company-wide system of record goes to wiki/tools.md |
 | 6 What drains you | personal/priorities.md, under an "Open loops and workflows to automate" heading |
 | 7 Company | wiki/company.md |
@@ -59,7 +59,7 @@ Private client material stays under personal/research/ or personal/projects/, ev
 
 Customer and prospect names from question 9 go to wiki/ only when the user says teammates may see them. Never save personal contact details there.
 
-Personal answers save locally and back up automatically. Company answers are shared knowledge: save them in wiki/ with their source (the user, or a URL and date) and whether the user confirmed them, include them in the next company review, and publish only after approval.
+Personal answers save locally and back up automatically. Company answers are shared knowledge: save them in wiki/ with the page header from AGENTS.md (answers from the user are confirmed by the user; content read from a link stays unconfirmed), include them in the next company review, and publish only after approval.
 
 ## After the intake
 

@@ -10,8 +10,9 @@ The distribution sources are under .agents/skills/:
 - company-os-sync: required automatic personal backup and reviewed company publication.
 - company-os-restore: required second-machine recovery.
 - grill-me: an optional, self-contained GrillMe interview.
+- company-os-operator: the optional scheduled operator. Setup offers it as the routine, not in the skills menu below; install it only when the user turns it on, with --skill company-os-operator.
 
-Only these four source packages are bundled. The other optional recommendations below install from their upstream repositories; do not copy their sources into the brain or install an entire collection. Existing same-name global skills need comparison before replacement.
+Only these five source packages are bundled. The other optional recommendations below install from their upstream repositories; do not copy their sources into the brain or install an entire collection. Existing same-name global skills need comparison before replacement.
 
 Setup already authorizes the core installation. Inspect the bundled sources, then run the installer with --install:
 
